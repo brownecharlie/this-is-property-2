@@ -21,12 +21,10 @@ class App extends Component {
   handleSubmit(event) {
     event.preventDefault();
  
-    // Find the text field via the React ref
     const text = findDOMNode(this.refs.textInput).value.trim();
  
     Meteor.call('tasks.insert', text);
  
-    // Clear form
     findDOMNode(this.refs.textInput).value = '';
   }
 
@@ -80,7 +78,7 @@ class App extends Component {
                 ref="textInput"
                 placeholder="Type to add new tasks"
               />
-            </form> : ''
+            </form> : null
           }
         </header>
  
