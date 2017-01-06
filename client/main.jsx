@@ -1,10 +1,18 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+
+import App from './containers/App.jsx';
+import store from './store';
 
 import './startup/accountsConfig.js';
-import App from './components/App.jsx';
  
 Meteor.startup(() => {
-  render(<App />, document.getElementById('render-target'));
+  render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById('root')
+  );
 });
