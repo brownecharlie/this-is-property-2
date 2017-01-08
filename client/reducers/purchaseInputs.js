@@ -13,7 +13,7 @@ import {
 
 const initialState = {
   price: 450000,
-  stampDuty: 0,
+  stampDuty: 2.78,
   buyToLet: false,
   surveyFees: null,
   purchaseLegalFees: 500,

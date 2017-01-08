@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { updateListings } from '../actions/propertyListings';
 
 import PropertySection from '../components/FormSections/PropertySection.jsx';
+import PurchaseSection from '../components/FormSections/PurchaseSection.jsx';
 
 class PropertyForm extends Component {
   constructor(props) {
@@ -50,6 +51,9 @@ class PropertyForm extends Component {
     return (
       <div className="PropertyForm">
         <PropertySection />
+        <hr />
+        <PurchaseSection />
+        <hr />
         <button onClick={this.onClickGetReturns}>Get Returns!</button>
       </div>
     );
