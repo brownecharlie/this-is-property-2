@@ -4,24 +4,26 @@ import {
   UPDATE_BUY_TO_LET,
   UPDATE_SURVEY_FEES,
   UPDATE_PURCHASE_LEGAL_FEES,
+  UPDATE_PURCHASE_AGENT_FEES,
   UPDATE_HOLD_PERIOD,
   UPDATE_GROWTH,
   UPDATE_RENTAL_INCOME,
   UPDATE_SALE_LEGAL_FEES,
-  UPDATE_SALE_AGENTS_FEES,
+  UPDATE_SALE_AGENT_FEES,
 } from '../constants';
 
 const initialState = {
   price: 450000,
   stampDuty: 2.78,
   buyToLet: false,
-  surveyFees: null,
-  purchaseLegalFees: 500,
   holdPeriod: 5,
   growth: 8,
   rentalIncome: 0,
+  surveyFees: 500,
+  purchaseLegalFees: 500,
+  purchaseAgentFees: 0,
   saleLegalFees: 500,
-  saleAgentsFees: 1,
+  saleAgentFees: 1,
 };
 
 const purchaseInputs = (state = initialState, action) => {
@@ -51,6 +53,11 @@ const purchaseInputs = (state = initialState, action) => {
         ...state,
         purchaseLegalFees: action.payload,
       };
+    case UPDATE_PURCHASE_AGENT_FEES:
+      return {
+        ...state,
+        purchaseAgentFees: action.payload,
+      };
     case UPDATE_HOLD_PERIOD:
       return {
         ...state,
@@ -71,10 +78,10 @@ const purchaseInputs = (state = initialState, action) => {
         ...state,
         saleLegalFees: action.payload,
       };
-    case UPDATE_SALE_AGENTS_FEES:
+    case UPDATE_SALE_AGENT_FEES:
       return {
         ...state,
-        saleAgentsFees: action.payload,
+        saleAgentFees: action.payload,
       };
     default:
       return state;

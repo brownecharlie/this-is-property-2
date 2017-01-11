@@ -2,9 +2,12 @@ import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { connect } from 'react-redux';
 
+import Input from 'antd/lib/input';
+import 'antd/lib/input/style/css';
+
 import { updateLocation } from '../../actions/propertyInputs';
 
-class LocationInput extends Component {
+class Location extends Component {
   constructor(props) {
     super(props);
 
@@ -12,22 +15,24 @@ class LocationInput extends Component {
   }
 
   onChange(event) {
-    this.props.onUpdateLocation(event.target.value);
+    const { onUpdateLocation } = this.props;
+    
+    onUpdateLocation(event.target.value);
   }
 
   render() {
     const { location } = this.props;
 
     return (
-      <div className="LocationInput">
-        <span>Location</span>
-        <input type="text" onChange={this.onChange} value={location} />
+      <div className="PropertyInputs-location">
+        <span>Location </span>
+        <Input onChange={this.onChange} value={location} />
       </div>
     );
   }
 }
 
-LocationInput.propTypes = {
+Location.propTypes = {
   location: PropTypes.string,
 };
 
@@ -44,4 +49,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(LocationInput);
+)(Location);

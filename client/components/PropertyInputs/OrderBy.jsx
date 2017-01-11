@@ -2,24 +2,27 @@ import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { connect } from 'react-redux';
 
+import Select from 'antd/lib/select';
+import 'antd/lib/select/style/css';
+
 import { ORDER_BY_VALUES } from '../../constants/formValues';
 
 import { updateOrderBy } from '../../actions/propertyInputs';
 
-class OrderByInput extends Component {
+class OrderBy extends Component {
   constructor(props) {
     super(props);
 
     this.onChange = this.onChange.bind(this);
   }
 
-  onChange(event) {
-    this.props.onUpdateOrderBy(event.target.value);
+  onChange(value) {
+    this.props.onUpdateOrderBy(value);
   }
 
   get selectOptions() {
     return ORDER_BY_VALUES.map(item => (
-      <option key={item.value} value={item.value}>{item.label}</option>
+      <Select.Option key={item.value}>{item.label}</Select.Option>
     ));
   }
 
@@ -27,17 +30,17 @@ class OrderByInput extends Component {
     const { orderBy } = this.props;
 
     return (
-      <div className="OrderByInput">
-        <span>Order by</span>
-        <select onChange={this.onChange} value={orderBy}>
+      <div className="PropertyInputs-orderBy">
+        <span>Order by </span>
+        <Select onChange={this.onChange} value={orderBy}>
           {this.selectOptions}
-        </select>
+        </Select>
       </div>
     );
   }
 }
 
-OrderByInput.propTypes = {
+OrderBy.propTypes = {
   orderBy: PropTypes.string,
 };
 
@@ -54,4 +57,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(OrderByInput);
+)(OrderBy);

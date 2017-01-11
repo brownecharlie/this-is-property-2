@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 import Select from 'antd/lib/select';
 import 'antd/lib/select/style/css';
 
-import { TYPE_VALUES } from '../../constants/formValues';
+import { LOAN_TYPE_VALUES } from '../../constants/formValues';
 
-import { updateType } from '../../actions/propertyInputs';
+import { updateLoanType } from '../../actions/mortgageInputs';
 
-class Type extends Component {
+class LoanType extends Component {
   constructor(props) {
     super(props);
 
@@ -17,22 +17,22 @@ class Type extends Component {
   }
 
   onChange(value) {
-    this.props.onUpdateType(value);
+    this.props.onUpdateLoanType(value);
   }
 
   get selectOptions() {
-    return TYPE_VALUES.map(item => (
+    return LOAN_TYPE_VALUES.map(item => (
       <Select.Option key={item.value}>{item.label}</Select.Option>
     ));
   }
 
   render() {
-    const { type } = this.props;
+    const { loanType } = this.props;
 
     return (
-      <div className="PropertyInputs-type">
-        <span>Property type </span>
-        <Select onChange={this.onChange} value={type}>
+      <div className="MortgageInputs-loanType">
+        <span>Loan type</span>
+        <Select onChange={this.onChange} value={loanType}>
           {this.selectOptions}
         </Select>
       </div>
@@ -40,21 +40,21 @@ class Type extends Component {
   }
 }
 
-Type.propTypes = {
-  type: PropTypes.string,
+LoanType.propTypes = {
+  loanType: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({
-  type: state.propertyInputs.type,
+  loanType: state.mortgageInputs.loanType,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onUpdateType(type) {
-    dispatch(updateType(type));
+  onUpdateLoanType(loanType) {
+    dispatch(updateLoanType(loanType));
   },
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Type);
+)(LoanType);

@@ -2,24 +2,27 @@ import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { connect } from 'react-redux';
 
+import Select from 'antd/lib/select';
+import 'antd/lib/select/style/css';
+
 import { RADIUS_VALUES } from '../../constants/formValues';
 
 import { updateRadius } from '../../actions/propertyInputs';
 
-class RadiusInput extends Component {
+class Radius extends Component {
   constructor(props) {
     super(props);
 
     this.onChange = this.onChange.bind(this);
   }
 
-  onChange(event) {
-    this.props.onUpdateRadius(parseInt(event.target.value));
+  onChange(value) {
+    this.props.onUpdateRadius(parseInt(value));
   }
 
   get selectOptions() {
     return RADIUS_VALUES.map(item => (
-      <option key={item} value={item}>{item === 0 ? 'This area only' : `Within ${item} miles`}</option>
+      <Select.Option key={item}>{item === 0 ? 'This area only' : `Within ${item} miles`}</Select.Option>
     ));
   }
 
@@ -27,17 +30,17 @@ class RadiusInput extends Component {
     const { radius } = this.props;
 
     return (
-      <div className="RadiusInput">
-        <span>Distance from location</span>
-        <select onChange={this.onChange} value={radius}>
+      <div className="PropertyInputs-radius">
+        <span>Distance from location </span>
+        <Select onChange={this.onChange} value={`${radius}`}>
           {this.selectOptions}
-        </select>
+        </Select>
       </div>
     );
   }
 }
 
-RadiusInput.propTypes = {
+Radius.propTypes = {
   radius: PropTypes.number,
 };
 
@@ -54,4 +57,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(RadiusInput);
+)(Radius);

@@ -3,8 +3,11 @@ import { findDOMNode } from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
  
-import AccountsUIWrapper from '../components/Accounts.jsx';
-import PropertyForm from '../containers/PropertyForm.jsx';
+import AccountsUIWrapper from '../components/Accounts';
+import PropertyForm from '../containers/PropertyForm';
+import PropertyReturns from '../components/PropertyReturns';
+import DayOnePayment from '../components/DayOnePayment';
+import MortgagePayments from '../components/MortgagePayments';
 import PropertyListings from '../components/PropertyListings';
 
 class App extends Component {
@@ -15,11 +18,16 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <header>
-          <AccountsUIWrapper />
-          <PropertyForm />
-          <PropertyListings />
-        </header>
+        <AccountsUIWrapper />
+        <PropertyForm />
+        <hr />
+        <PropertyReturns />
+        <hr />
+        <DayOnePayment />
+        <hr />
+        <MortgagePayments />
+        <hr />
+        <PropertyListings />
       </div>
     );
   }

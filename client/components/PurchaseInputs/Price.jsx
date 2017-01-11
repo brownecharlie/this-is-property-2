@@ -2,8 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { connect } from 'react-redux';
 
-import calculateStampDuty from '../../utils/calculateStampDuty';
-import { updatePrice, updateStampDuty } from '../../actions/purchaseInputs';
+import { updatePrice } from '../../actions/purchaseInputs';
 
 class Price extends Component {
   constructor(props) {
@@ -14,10 +13,9 @@ class Price extends Component {
 
   onChange(event) {
     const price = parseFloat(event.target.value);
-    const { onUpdatePrice, onUpdateStampDuty } = this.props;
+    const { onUpdatePrice } = this.props;
 
-    onUpdatePrice(price);
-    // onUpdateStampDuty(calculateStampDuty(price));
+    if (price) onUpdatePrice(price);
   }
 
   render() {
@@ -26,7 +24,7 @@ class Price extends Component {
     return (
       <div className="PurchaseInputs-price">
         <span>Price </span>
-        <input type="text" onChange={this.onChange} value={price} />
+        <input type="number" onChange={this.onChange} value={price} />
       </div>
     );
   }
@@ -44,9 +42,6 @@ const mapDispatchToProps = (dispatch) => ({
   onUpdatePrice(price) {
     dispatch(updatePrice(price));
   },
-  onUpdateStampDuty(stampDuty) {
-    dispatch(updateStampDuty(stampDuty));
-  }
 });
 
 export default connect(

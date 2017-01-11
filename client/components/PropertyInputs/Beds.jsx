@@ -2,24 +2,27 @@ import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { connect } from 'react-redux';
 
+import Select from 'antd/lib/select';
+import 'antd/lib/select/style/css';
+
 import { BED_VALUES } from '../../constants/formValues';
 
 import { updateMinBeds } from '../../actions/propertyInputs';
 
-class BedInput extends Component {
+class Beds extends Component {
   constructor(props) {
     super(props);
 
     this.onChange = this.onChange.bind(this);
   }
 
-  onChange(event) {
-    this.props.onUpdateMinBeds(parseInt(event.target.value));
+  onChange(value) {
+    this.props.onUpdateMinBeds(parseInt(value));
   }
 
   get selectOptions() {
     return BED_VALUES.map(item => (
-      <option key={item} value={item}>{item === 0 ? 'No min' : `${item}+`}</option>
+      <Select.Option key={item}>{item === 0 ? 'No min' : `${item}+`}</Select.Option>
     ));
   }
 
@@ -27,17 +30,17 @@ class BedInput extends Component {
     const { minBeds } = this.props;
 
     return (
-      <div className="BedInput">
-        <span>Beds</span>
-        <select onChange={this.onChange} value={minBeds}>
+      <div className="PropertyInputs-beds">
+        <span>Beds </span>
+        <Select onChange={this.onChange} value={`${minBeds}`}>
           {this.selectOptions}
-        </select>
+        </Select>
       </div>
     );
   }
 }
 
-BedInput.propTypes = {
+Beds.propTypes = {
   minBeds: PropTypes.number,
 };
 
@@ -54,4 +57,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(BedInput);
+)(Beds);

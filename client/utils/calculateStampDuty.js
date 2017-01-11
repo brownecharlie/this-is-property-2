@@ -1,4 +1,4 @@
-export default function (price, buyToLet = false) {
+export default function (price = 425000, buyToLet = false) {
   const stamp_1 = 125000;
   const stamp_2 = 250000;
   const stamp_3 = 925000;

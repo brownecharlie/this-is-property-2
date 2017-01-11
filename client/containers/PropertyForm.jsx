@@ -2,10 +2,14 @@ import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { connect } from 'react-redux';
 
+import Button from 'antd/lib/button';
+import 'antd/lib/button/style/css';
+
 import { updateListings } from '../actions/propertyListings';
 
-import PropertySection from '../components/FormSections/PropertySection.jsx';
-import PurchaseSection from '../components/FormSections/PurchaseSection.jsx';
+import PropertySection from '../components/FormSections/PropertySection';
+import PurchaseSection from '../components/FormSections/PurchaseSection';
+import MortgageSection from '../components/FormSections/MortgageSection';
 
 class PropertyForm extends Component {
   constructor(props) {
@@ -14,7 +18,7 @@ class PropertyForm extends Component {
     this.onClickGetReturns = this.onClickGetReturns.bind(this);
   }
 
-  onClickGetReturns(event) {
+  onClickGetReturns() {
     const {
       minPrice,
       maxPrice,
@@ -29,7 +33,7 @@ class PropertyForm extends Component {
       area: location === '' ? 'England' : location,
       radius: radius,
       minimum_price: minPrice,
-      maximum_price: maxPrice === 0 ? null : maxPrice,
+      maximum_price: maxPrice === 10000000 ? null : maxPrice,
       minimum_beds: minBeds,
       property_type: type,
       listing_status: 'sale',
@@ -41,7 +45,6 @@ class PropertyForm extends Component {
       if (err) {
         console.log(err);
       } else {
-        console.log(result.data);
         this.props.onUpdateListings(result.data);
       }
     });
@@ -52,9 +55,11 @@ class PropertyForm extends Component {
       <div className="PropertyForm">
         <PropertySection />
         <hr />
+        <Button onClick={this.onClickGetReturns} type="ghost">Get listings</Button>
+        <hr />
         <PurchaseSection />
         <hr />
-        <button onClick={this.onClickGetReturns}>Get Returns!</button>
+        <MortgageSection />
       </div>
     );
   }

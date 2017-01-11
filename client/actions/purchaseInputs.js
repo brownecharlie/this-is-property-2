@@ -4,11 +4,12 @@ import {
   UPDATE_BUY_TO_LET,
   UPDATE_SURVEY_FEES,
   UPDATE_PURCHASE_LEGAL_FEES,
+  UPDATE_PURCHASE_AGENT_FEES,
   UPDATE_HOLD_PERIOD,
   UPDATE_GROWTH,
   UPDATE_RENTAL_INCOME,
   UPDATE_SALE_LEGAL_FEES,
-  UPDATE_SALE_AGENTS_FEES,
+  UPDATE_SALE_AGENT_FEES,
 } from '../constants';
 
 export function updatePrice(price) {
@@ -46,6 +47,13 @@ export function updatePurchaseLegalFees(purchaseLegalFees) {
   };
 }
 
+export function updatePurchaseAgentFees(purchaseAgentFees) {
+  return {
+    type: UPDATE_PURCHASE_AGENT_FEES,
+    payload: purchaseAgentFees,
+  };
+}
+
 export function updateHoldPeriod(holdPeriod) {
   return {
     type: UPDATE_HOLD_PERIOD,
@@ -74,9 +82,9 @@ export function updateSaleLegalFees(saleLegalFees) {
   };
 }
 
-export function updateSaleAgentsFees(saleAgentsFees) {
+export function updateSaleAgentFees(saleAgentFees) {
   return {
-    type: UPDATE_SALE_AGENTS_FEES,
-    payload: saleAgentsFees,
+    type: UPDATE_SALE_AGENT_FEES,
+    payload: saleAgentFees,
   };
 }

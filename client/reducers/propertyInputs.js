@@ -10,12 +10,12 @@ import {
 } from '../constants';
 
 const initialState = {
-  minPrice: 0,
-  maxPrice: 0,
+  minPrice: 500000,
+  maxPrice: 1000000,
   minBeds: 0,
   maxBeds: 0,
-  location: '',
-  radius: 0,
+  location: 'n5',
+  radius: 0.25,
   type: 'houses',
   orderBy: 'price',
 };
