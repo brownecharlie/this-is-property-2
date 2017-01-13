@@ -1,0 +1,7 @@
+.DayOnePayment {
+  @include gridle(row);
+
+  .DayOnePayment-column {
+    @include gridle(12);
+  }
+}

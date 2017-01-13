@@ -1,0 +1,36 @@
+.FormInput {
+  @include gridle(6);
+
+  &:nth-of-type(odd) {
+    @include gridle_clear(left);
+  }
+
+  margin: 5px 0;
+
+  > span {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .ant-select,
+  .ant-input-number {
+    width: 100%;
+  }
+
+  .ant-switch {
+    width: 40px;
+  }
+}
+
+.PropertySection,
+.MortgageSection,
+.PurchaseSection {
+  @include gridle(row);
+  border-bottom: 1px solid $color-grey-light;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}

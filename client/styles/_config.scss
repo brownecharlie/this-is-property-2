@@ -1,0 +1,35 @@
+@import "../../../node_modules/gridle/sass/gridle/_gridle.scss";
+
+// Grid
+$settings: (
+  context: 12,
+  column-width: null,
+  gutter-width: 10px,
+  gutter-height: 0,
+  gutter-top: 0,
+  gutter-bottom: 0,
+  gutter-left: 15px,
+  gutter-right: 15px,
+  direction: ltr,
+  dir-attribute: false,
+  states-classes: false,
+  name-multiplicator: 1,
+  classes-prefix: ""
+);
+
+@include gridle_setup($settings);
+
+@include gridle_register_state(xs, (
+  max-width: 768px
+));
+@include gridle_register_state(sm, (
+  min-width: 768px
+));
+@include gridle_register_state(md, (
+  min-width: 1024px
+));
+@include gridle_register_state(lg, (
+  min-width: 1200px
+));
+
+@include gridle_init();

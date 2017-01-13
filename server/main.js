@@ -1,8 +1,18 @@
 import { Meteor } from 'meteor/meteor';
+import { check } from 'meteor/check';
 import querystring from 'querystring';
+import geoip from 'geoip-lite';
 
 Meteor.methods({
+  getIp() {
+    const ip = geoip.lookup('178.62.57.183');
+  
+    return ip;
+  },
+
   getListings(params) {
+    check(params, Object);
+
     const hostname = 'http://api.zoopla.co.uk';
     const path = '/api/v1/';
     const endpoint = 'property_listings.json';
@@ -17,6 +27,8 @@ Meteor.methods({
   },
 
   getAdminDistrict(params) {
+    check(params, Object);
+
     const hostname = 'http://api.postcodes.io';
     const endpoint = '/postcodes';
     const query = querystring.stringify({
@@ -29,6 +41,8 @@ Meteor.methods({
   },
 
   getAveragePrices(adminDistrict) {
+    check(adminDistrict, String);
+
     const hostname = 'http://landregistry.data.gov.uk';
     const path = '/data/hpi/region/';
     const endpoint = `${adminDistrict}.json`;

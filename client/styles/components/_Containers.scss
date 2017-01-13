@@ -1,0 +1,32 @@
+.FormContainer,
+.ReturnsContainer,
+.ListingsContainer {
+  @include gridle(container);
+}
+
+.FormContainer {
+  @include gridle(10 prefix 1 suffix 1);
+}
+
+.ReturnsContainer {
+  @include gridle(5 suffix 1);
+}
+
+.ListingsContainer {
+  @include gridle(5 prefix 1);
+
+  ul {
+    @include gridle(container);
+  }
+
+  li {
+    @include gridle(4);
+
+    padding: 5px;
+
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+}

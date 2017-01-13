@@ -1,15 +1,16 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 
-import Deposit from '../MortgageInputs/Deposit';
-import InterestRate from '../MortgageInputs/InterestRate';
-import BrokerFee from '../MortgageInputs/BrokerFee';
-import LoanType from '../MortgageInputs/LoanType';
-import Term from '../MortgageInputs/Term';
+import Deposit from '../Inputs/Mortgage/Deposit';
+import InterestRate from '../Inputs/Mortgage/InterestRate';
+import BrokerFee from '../Inputs/Mortgage/BrokerFee';
+import LoanType from '../Inputs/Mortgage/LoanType';
+import Term from '../Inputs/Mortgage/Term';
 
-export default function MortgageInputs() {
+export default function MortgageSection() {
   return (
-    <div className="MortgageInputs">
+    <div className="MortgageSection">
+      <h1 className="MortgageSection-title">Mortgage Inputs</h1>
       <Deposit />
       <InterestRate />
       <BrokerFee />
