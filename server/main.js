@@ -5,6 +5,7 @@ import geoip from 'geoip-lite';
 
 Meteor.methods({
   getIp() {
+    console.log(this.connection.clientAddress);
     const ip = geoip.lookup('178.62.57.183');
   
     return ip;
