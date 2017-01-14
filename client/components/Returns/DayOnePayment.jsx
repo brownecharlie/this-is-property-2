@@ -23,35 +23,34 @@ function DayOnePayment ({ buyToLet, price, purchaseLegalFees, purchaseAgentFees,
 
   return (
     <div className="DayOnePayment">
-      <div className="DayOnePayment-column">
-        <div>
-          <span>Day one payment: </span>
-          <span className="DayOnePayment-total">{formatCurrency(dayOnePayment)}</span>
-        </div>
-        <div>
-          <span>Deposit paid: </span>
-          <span className="DayOnePayment-depositPaid">{formatCurrency(depositPaid)}</span>
-        </div>
-        <div>
-          <span>Stamp duty (£): </span>
-          <span className="DayOnePayment-stamDutyPaid">{formatCurrency(stampDutyPaid)}</span>
-        </div>
-        <div>
-          <span>Stamp duty (%): </span>
-          <span className="DayOnePayment-stamDutyPercentage">{`${stampDuty}%`}</span>
-        </div>
-        <div>
-          <span>Buy to let: </span>
-          <span className="DayOnePayment-buyToLet">{buyToLet ? 'Yes' : 'No'}</span>
-        </div>
-        <div>
-          <span>Legal Fees: </span>
-          <span className="DayOnePayment-legalFees">{formatCurrency(purchaseLegalFees)}</span>
-        </div>
+      <h2 className="DayOnePayment-title">Day One Payment</h2>
+      <div className="DayOnePayment-total">
+        <span>Day one payment: </span>
+        <span className="u-floatRight">{formatCurrency(dayOnePayment)}</span>
       </div>
-      <div className="DayOnePayment-column">
+      <div className="DayOnePayment-depositPaid">
+        <span>Deposit paid: </span>
+        <span className="u-floatRight">{formatCurrency(depositPaid)}</span>
+      </div>
+      <div className="DayOnePayment-stamDutyPaid">
+        <span>Stamp duty (£): </span>
+        <span className="u-floatRight">{formatCurrency(stampDutyPaid)}</span>
+      </div>
+      <div className="DayOnePayment-stamDutyPercentage">
+        <span>Stamp duty (%): </span>
+        <span className="u-floatRight">{`${stampDuty}%`}</span>
+      </div>
+      <div className="DayOnePayment-buyToLet">
+        <span>Buy to let: </span>
+        <span className="u-floatRight">{buyToLet ? 'Yes' : 'No'}</span>
+      </div>
+      <div className="DayOnePayment-legalFees">
+        <span>Legal Fees: </span>
+        <span className="u-floatRight">{formatCurrency(purchaseLegalFees)}</span>
+      </div>
+      <div className="DayOnePayment-chart">
         <ResponsiveContainer height={250}>
-          <PieChart>
+          <PieChart width={250} height={250}>
             <Pie
               data={data}
               isAnimationActive={false}

@@ -8,7 +8,6 @@ import MortgagePayments from './Returns/MortgagePayments';
 export default function PropertyForm() {
   return (
     <div className="ReturnsContainer">
-      <h1 className="ReturnsContainer-title">Potential Returns</h1>
       <PropertyReturns />
       <DayOnePayment />
       <MortgagePayments />

@@ -18,11 +18,13 @@ class App extends Component {
     super(props);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     const { onUpdateListings } = this.props;
 
-    Meteor.call('getIp', (err, ip) => {
-      getListings({ ...this.props, location: ip.city }, listings => {
+    Meteor.call('getUserLocationFromIp', (err, userLocation) => {
+      if (err) { console.log(err); return; }
+
+      getListings({ ...this.props, location: userLocation.city }, listings => {
         onUpdateListings(listings);
       });
     });

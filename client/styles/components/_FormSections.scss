@@ -1,9 +1,9 @@
 .FormInput {
-  @include gridle(6);
+  @include gridle(12 sm 6 lg 4);
 
-  &:nth-of-type(odd) {
-    @include gridle_clear(left);
-  }
+  // &:nth-of-type(odd) {
+  //   @include gridle_clear(left);
+  // }
 
   margin: 5px 0;
 

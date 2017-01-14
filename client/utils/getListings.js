@@ -1,13 +1,5 @@
 export default function getListings(params, cb) {
-  const {
-    minPrice,
-    maxPrice,
-    minBeds,
-    location,
-    radius,
-    type,
-    orderBy,
-  } = params;
+  const { minPrice, maxPrice, minBeds, location, radius, type, orderBy } = params;
 
   const query = {
     area: location,

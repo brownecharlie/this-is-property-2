@@ -33,64 +33,67 @@ function MortgagePayments ({ price, brokerFee, deposit, interestRate, loanType, 
 
   return (
     <div className="MortgagePayments">
-      <div>
+      <h2 className="MortgagePayments-title">Mortgage Payments</h2>
+      <div className="MortgagePayments-loanAmount">
         <span>Loan Amount: </span>
-        <span className="MortgagePayments-loanAmount">{formatCurrency(loanAmount)}</span>
+        <span className="u-floatRight">{formatCurrency(loanAmount)}</span>
       </div>
-      <div>
+      <div className="MortgagePayments-deposit">
         <span>Deposit ({deposit}%): </span>
-        <span className="MortgagePayments-deposit">{formatCurrency(depositPaid)}</span>
+        <span className="u-floatRight">{formatCurrency(depositPaid)}</span>
       </div>
-      <div>
+      <div className="MortgagePayments-term">
         <span>Mortgage term: </span>
-        <span className="MortgagePayments-term">{term} years</span>
+        <span className="u-floatRight">{term} years</span>
       </div>
-      <div>
+      <div className="MortgagePayments-brokerFee">
         <span>Broker fee: </span>
-        <span className="MortgagePayments-brokerFee">{formatCurrency(brokerFee)}</span>
+        <span className="u-floatRight">{formatCurrency(brokerFee)}</span>
       </div>
-      <div>
+      <div className="MortgagePayments-monthlyPayments">
         <span>Monthly payments: </span>
-        <span className="MortgagePayments-monthlyPayments">{formatCurrency(monthlyPayments)}</span>
+        <span className="u-floatRight">{formatCurrency(monthlyPayments)}</span>
       </div>
-      <div>
+      <div className="MortgagePayments-annualPayments">
         <span>Annual payments: </span>
-        <span className="MortgagePayments-annualPayments">{formatCurrency(annualPayments)}</span>
+        <span className="u-floatRight">{formatCurrency(annualPayments)}</span>
       </div>
-      <div>
+      <div className="MortgagePayments-interestRate">
         <span>Interest rate: </span>
-        <span className="MortgagePayments-interestRate">{interestRate}%</span>
+        <span className="u-floatRight">{interestRate}%</span>
       </div>
-      <div>
+      <div className="MortgagePayments-mortgageType">
         <span>Mortgage type: </span>
-        <span className="MortgagePayments-mortgageType">{capitalize(loanType)}</span>
+        <span className="u-floatRight">{capitalize(loanType)}</span>
       </div>
-      <ResponsiveContainer height={300}>
-        <LineChart
-          width={730}
-          height={250}
-          data={interestAndAmortisation}
-          margin={{ top: 20, right: 30, left: 0, bottom: 20 }}
-        >
-          <XAxis dataKey="year" />
-          <YAxis />
-          <CartesianGrid strokeDasharray="3 3" />
-          <Tooltip />
-          <Legend />
-          <Line
-            type="monotone"
-            dataKey="interest"
-            stroke="#8884d8"
-            isAnimationActive={false}
-          />
-          <Line
-            type="monotone"
-            dataKey="amortisation"
-            stroke="#82ca9d"
-            isAnimationActive={false}
-          />
-        </LineChart>
-      </ResponsiveContainer>
+      <div className="MortgagePayments-chart">
+        <ResponsiveContainer height={300}>
+          <LineChart
+            width={730}
+            height={250}
+            data={interestAndAmortisation}
+            margin={{ top: 20, right: 30, left: 0, bottom: 20 }}
+          >
+            <XAxis dataKey="year" />
+            <YAxis />
+            <CartesianGrid strokeDasharray="3 3" />
+            <Tooltip />
+            <Legend />
+            <Line
+              type="monotone"
+              dataKey="interest"
+              stroke="#8884d8"
+              isAnimationActive={false}
+            />
+            <Line
+              type="monotone"
+              dataKey="amortisation"
+              stroke="#82ca9d"
+              isAnimationActive={false}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 }

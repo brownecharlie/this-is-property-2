@@ -87,69 +87,66 @@ class PropertyReturns extends Component {
 
     return (
       <div className="PropertyReturns">
-        <div className="PropertyReturns-column">
-          <div className="PropertyReturns-profit">
-            <span>Profit: </span>
-            <span>{formatCurrency(profit)}</span>
-          </div>
-          <div className="PropertyReturns-salePrice">
-            <span>Sale price: </span>
-            <span>{formatCurrency(salePrice)}</span>
-          </div>
-          <div className="PropertyReturns-saleCosts">
-            <span>Sale costs: </span>
-            <span>{formatCurrency(saleCosts)}</span>
-          </div>
-          <div className="PropertyReturns-price">
-            <span>Purchase price: </span>
-            <span>{formatCurrency(price)}</span>
-          </div>
-          <div className="PropertyReturns-costs">
-            <span>Purchase costs: </span>
-            <span>{formatCurrency(purchaseCosts)}</span>
-          </div>
-          <div className="PropertyReturns-mortgagePayments">
-            <span>Mortgage payments: </span>
-            <span>{formatCurrency(totalMortgagePayment)}</span>
-          </div>
-          <div className="PropertyReturns-rentalIncome">
-            <span>Rental income: </span>
-            <span>{formatCurrency(totalRentalIncome)}</span>
-          </div>
-          <div className="PropertyReturns-holdPeriod">
-            <span>Hold period: </span>
-            <span>{`${holdPeriod} years`}</span>
-          </div>
-          <div className="PropertyReturns-holdPeriod">
-            <span>Growth (p/a): </span>
-            <span>{`${growth}%`}</span>
-          </div>
-          <div className="PropertyReturns-buyToLet">
-            <span>Buy to let: </span>
-            <span>{buyToLet ? 'Yes' : 'No'}</span>
-          </div>
-          <div className="PropertyReturns-stamDuty">
-            <span>Stamp duty: </span>
-            <span>{`${stampDuty}%`}</span>
-          </div>
+        <h2 className="PropertyReturns-title">Property Returns</h2>
+        <div className="PropertyReturns-profit">
+          <span>Profit: </span>
+          <span className="u-floatRight">{formatCurrency(profit)}</span>
         </div>
-        <div className="PropertyReturns-column">
-          {this.state.fiveYearGrowth ?
-            <ResponsiveContainer height={230}>
-              <BarChart width={300} height={230} data={data}>
-                <XAxis dataKey="name" />
-                <YAxis />
-                <CartesianGrid strokeDasharray="5 5" />
-                <Bar dataKey="value" isAnimationActive={false}>
-                {
-                  data.map((entry, index) => <Cell key={index} fill={entry.color}/>)
-                }
-                </Bar>
-              </BarChart>
-            </ResponsiveContainer>
-            : null
-          }
+        <div className="PropertyReturns-salePrice">
+          <span>Sale price: </span>
+          <span className="u-floatRight">{formatCurrency(salePrice)}</span>
         </div>
+        <div className="PropertyReturns-saleCosts">
+          <span>Sale costs: </span>
+          <span className="u-floatRight">{formatCurrency(saleCosts)}</span>
+        </div>
+        <div className="PropertyReturns-price">
+          <span>Purchase price: </span>
+          <span className="u-floatRight">{formatCurrency(price)}</span>
+        </div>
+        <div className="PropertyReturns-costs">
+          <span>Purchase costs: </span>
+          <span className="u-floatRight">{formatCurrency(purchaseCosts)}</span>
+        </div>
+        <div className="PropertyReturns-mortgagePayments">
+          <span>Mortgage payments: </span>
+          <span className="u-floatRight">{formatCurrency(totalMortgagePayment)}</span>
+        </div>
+        <div className="PropertyReturns-rentalIncome">
+          <span>Rental income: </span>
+          <span className="u-floatRight">{formatCurrency(totalRentalIncome)}</span>
+        </div>
+        <div className="PropertyReturns-holdPeriod">
+          <span>Hold period: </span>
+          <span className="u-floatRight">{`${holdPeriod} years`}</span>
+        </div>
+        <div className="PropertyReturns-holdPeriod">
+          <span>Growth (p/a): </span>
+          <span className="u-floatRight">{`${growth}%`}</span>
+        </div>
+        <div className="PropertyReturns-buyToLet">
+          <span>Buy to let: </span>
+          <span className="u-floatRight">{buyToLet ? 'Yes' : 'No'}</span>
+        </div>
+        <div className="PropertyReturns-stamDuty">
+          <span>Stamp duty: </span>
+          <span className="u-floatRight">{`${stampDuty}%`}</span>
+        </div>
+        <div className="PropertyReturns-chart">{this.state.fiveYearGrowth ?
+          <ResponsiveContainer height={230}>
+            <BarChart width={300} height={230} data={data}>
+              <XAxis dataKey="name" />
+              <YAxis />
+              <CartesianGrid strokeDasharray="5 5" />
+              <Bar dataKey="value" isAnimationActive={false}>
+              {
+                data.map((entry, index) => <Cell key={index} fill={entry.color}/>)
+              }
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+          : null
+        }</div>
       </div>
     );
   }

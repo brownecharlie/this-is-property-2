@@ -4,11 +4,12 @@ import querystring from 'querystring';
 import geoip from 'geoip-lite';
 
 Meteor.methods({
-  getIp() {
-    console.log(this.connection.clientAddress);
-    const ip = geoip.lookup('178.62.57.183');
+  getUserLocationFromIp() {
+    let { clientAddress } = this.connection;
+    const ip = clientAddress === '127.0.0.1' ? '178.62.57.183' : clientAddress;
+    const userLocation = geoip.lookup(ip);
   
-    return ip;
+    return userLocation;
   },
 
   getListings(params) {

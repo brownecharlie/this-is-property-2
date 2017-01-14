@@ -11,7 +11,6 @@ class ListingsContainer extends Component {
     const listings = this.props.propertyListings.listing || [];
     return (
       <div className="ListingsContainer">
-        <h1 className="ListingsContainer-title">Property Listings</h1>
         <ul>{listings.map((listing, index) => (
           <li key={index}>
             <img src={listing.image_url} alt="" />

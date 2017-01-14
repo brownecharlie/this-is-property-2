@@ -5,22 +5,26 @@
 }
 
 .FormContainer {
-  @include gridle(10 prefix 1 suffix 1);
+  @include gridle(12 sm 10 prefix 1 suffix 1);
+
+  > div > h1 {
+    @include gridle(12);
+  }
 }
 
 .ReturnsContainer {
-  @include gridle(5 suffix 1);
+  @include gridle(12 sm 5 suffix 1);
 }
 
 .ListingsContainer {
-  @include gridle(5 prefix 1);
+  @include gridle(12 sm 5 prefix 1);
 
   ul {
     @include gridle(container);
   }
 
   li {
-    @include gridle(4);
+    @include gridle(6);
 
     padding: 5px;
 
