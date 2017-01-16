@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  font-size: $font-size-sm;
 }
  
 #login-buttons {
@@ -7,14 +8,10 @@ body {
   margin-bottom: 50px;
 }
 
-.u-row {
-  @include gridle(row);
-}
+.u-floatRight { @include gridle(float right); }
 
-.u-column {
-  @include gridle(12);
-}
-
-.u-floatRight {
-  @include gridle(float right);
-}
+.u-xl-textSize { font-size: $font-size-xl; }
+.u-lg-textSize { font-size: $font-size-lg; }
+.u-md-textSize { font-size: $font-size-md; }
+.u-sm-textSize { font-size: $font-size-sm; }
+.u-xs-textSize { font-size: $font-size-xs; }

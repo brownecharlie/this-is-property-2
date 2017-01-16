@@ -17,7 +17,9 @@ class Radius extends Component {
   }
 
   onChange(value) {
-    this.props.onUpdateRadius(parseInt(value));
+    const { onUpdateRadius } = this.props;
+
+    onUpdateRadius(parseFloat(value));
   }
 
   get selectOptions() {

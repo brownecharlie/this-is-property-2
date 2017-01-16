@@ -16,10 +16,9 @@ import SaleAgentFees from '../Inputs/Purchase/SaleAgentFees';
 export default function PurchaseSection() {
   return (
     <div className="PurchaseSection">
-      <h1 className="PurchaseSection-title">Purchase Inputs</h1>
       <Price />
-      <StampDuty />
       <BuyToLet />
+      <StampDuty />
       <HoldPeriod />
       <Growth />
       <RentalIncome />

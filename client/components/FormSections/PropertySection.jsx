@@ -53,7 +53,6 @@ class PropertySection extends Component {
   render() {
     return (
       <div className="PropertySection">
-        <h1 className="PropertySection-title">Property Inputs</h1>
         <Price />
         <Location />
         <Beds />

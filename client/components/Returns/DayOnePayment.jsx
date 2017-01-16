@@ -23,7 +23,7 @@ function DayOnePayment ({ buyToLet, price, purchaseLegalFees, purchaseAgentFees,
 
   return (
     <div className="DayOnePayment">
-      <h2 className="DayOnePayment-title">Day One Payment</h2>
+      <h2 className="DayOnePayment-title u-xl-textSize">Day One Payment</h2>
       <div className="DayOnePayment-total">
         <span>Day one payment: </span>
         <span className="u-floatRight">{formatCurrency(dayOnePayment)}</span>

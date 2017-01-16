@@ -33,7 +33,7 @@ function MortgagePayments ({ price, brokerFee, deposit, interestRate, loanType, 
 
   return (
     <div className="MortgagePayments">
-      <h2 className="MortgagePayments-title">Mortgage Payments</h2>
+      <h2 className="MortgagePayments-title u-xl-textSize">Mortgage Payments</h2>
       <div className="MortgagePayments-loanAmount">
         <span>Loan Amount: </span>
         <span className="u-floatRight">{formatCurrency(loanAmount)}</span>
@@ -72,7 +72,7 @@ function MortgagePayments ({ price, brokerFee, deposit, interestRate, loanType, 
             width={730}
             height={250}
             data={interestAndAmortisation}
-            margin={{ top: 20, right: 30, left: 0, bottom: 20 }}
+            margin={{ top: 20, right: 0, left: 0, bottom: 20 }}
           >
             <XAxis dataKey="year" />
             <YAxis />

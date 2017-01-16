@@ -17,7 +17,7 @@ const initialState = {
   location: 'n5',
   radius: 0.25,
   type: 'houses',
-  orderBy: 'price',
+  orderBy: 'age',
 };
 
 const propertyInputs = (state = initialState, action) => {

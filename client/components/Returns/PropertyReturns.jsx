@@ -76,7 +76,7 @@ class PropertyReturns extends Component {
     const saleCosts = calculateSaleCosts(saleAgentFees, salePrice, saleLegalFees);
     const purchaseCosts = calculatePurchaseCosts(purchaseAgentFees, price, purchaseLegalFees, surveyFees, stampDuty, price);
     const monthlyMortgagePayment = calculateMortgagePayments(price, deposit, loanType, interestRate, term).monthly;
-    const totalMortgagePayment = calculateTotalMortgagePayment(monthlyMortgagePayment, holdPeriod);
+    const totalMortgagePayment = calculateTotalMortgagePayment(monthlyMortgagePayment, holdPeriod, brokerFee);
     const totalRentalIncome = calculateTotalRentalIncome(rentalIncome, holdPeriod);
     const profit = calculateProfit(salePrice, saleCosts, price, purchaseCosts, totalMortgagePayment, brokerFee, totalRentalIncome);
 
@@ -87,7 +87,7 @@ class PropertyReturns extends Component {
 
     return (
       <div className="PropertyReturns">
-        <h2 className="PropertyReturns-title">Property Returns</h2>
+        <h2 className="PropertyReturns-title u-xl-textSize">Property Returns</h2>
         <div className="PropertyReturns-profit">
           <span>Profit: </span>
           <span className="u-floatRight">{formatCurrency(profit)}</span>

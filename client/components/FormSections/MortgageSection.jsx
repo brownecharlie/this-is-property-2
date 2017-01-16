@@ -10,7 +10,6 @@ import Term from '../Inputs/Mortgage/Term';
 export default function MortgageSection() {
   return (
     <div className="MortgageSection">
-      <h1 className="MortgageSection-title">Mortgage Inputs</h1>
       <Deposit />
       <InterestRate />
       <BrokerFee />

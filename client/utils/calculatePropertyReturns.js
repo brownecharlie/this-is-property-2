@@ -46,8 +46,8 @@ export function calculateMortgagePayments(price, deposit, loanType, interestRate
   };
 }
 
-export function calculateTotalMortgagePayment(monthlyMortgagePayment, holdPeriod) {
-  return (monthlyMortgagePayment * holdPeriod) * 12;
+export function calculateTotalMortgagePayment(monthlyMortgagePayment, holdPeriod, brokerFee) {
+  return ((monthlyMortgagePayment * holdPeriod) * 12) + brokerFee;
 }
 
 export function calculateTotalRentalIncome(rentalIncome, holdPeriod) {
@@ -65,23 +65,36 @@ export function calculateDayOnePayment(deposit, purchaseAgentFees, stampDuty, pr
 export function calculateInterestAndAmortisation(loanAmount, annualPayment, interestRate, term) {
   const arr = [];
   let interest;
+  let formattedInterest;
   let amortisation;
+  let formattedAmortisation;
   let loanRemaining;
 
   for (let i = 0; i <= term - 1; i++) {
     if (i === 0) {
       interest = loanAmount * interestRate / 100;
+      formattedInterest = interest.toLocaleString('en-GB', { style: 'currency', currency: 'GBP' });
       amortisation = annualPayment - interest;
+      formattedAmortisation = amortisation.toLocaleString('en-GB', { style: 'currency', currency: 'GBP' });
       loanRemaining = loanAmount - amortisation;
     } else {
       interest = arr[i - 1].loanRemaining * interestRate / 100;
+      formattedInterest = interest.toLocaleString('en-GB', { style: 'currency', currency: 'GBP' });
       amortisation = annualPayment - interest;
+      formattedAmortisation = amortisation.toLocaleString('en-GB', { style: 'currency', currency: 'GBP' });
       loanRemaining = arr[i - 1].loanRemaining - amortisation;
     }
 
     const year = `Y${i + 1}`;
 
-    arr.push({ interest, amortisation, loanRemaining, year });
+    arr.push({
+      interest,
+      formattedInterest,
+      amortisation,
+      formattedAmortisation,
+      loanRemaining,
+      year,
+    });
   }
 
   return arr;
