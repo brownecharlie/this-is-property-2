@@ -16,7 +16,9 @@ function DayOnePayment ({ buyToLet, price, purchaseLegalFees, purchaseAgentFees,
   const stampDutyPaid = calculateStampDuty(stampDuty, price);
 
   const data = [
+    { name: 'Broker Fee', value: brokerFee, color: '#FF8042' },
     { name: 'Deposit', value: depositPaid, color: '#0088FE' },
+    { name: 'Survey Fees', value: surveyFees, color: '#8884d8' },
     { name: 'Stamp Duty', value: stampDutyPaid, color: '#00C49F' },
     { name: 'Legal Fees', value: purchaseLegalFees, color: '#FFBB28' },
   ];
@@ -47,6 +49,14 @@ function DayOnePayment ({ buyToLet, price, purchaseLegalFees, purchaseAgentFees,
       <div className="DayOnePayment-legalFees">
         <span>Legal Fees: </span>
         <span className="u-floatRight">{formatCurrency(purchaseLegalFees)}</span>
+      </div>
+      <div className="DayOnePayment-brokerFee">
+        <span>Broker Fee: </span>
+        <span className="u-floatRight">{formatCurrency(brokerFee)}</span>
+      </div>
+      <div className="DayOnePayment-surveyFees">
+        <span>Survey Fees: </span>
+        <span className="u-floatRight">{formatCurrency(surveyFees)}</span>
       </div>
       <div className="DayOnePayment-chart">
         <ResponsiveContainer height={250}>

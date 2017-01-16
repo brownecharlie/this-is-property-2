@@ -24,6 +24,7 @@ class PropertyReturns extends Component {
 
     this.state = {
       fiveYearGrowth: null,
+      adminDistrict: null,
     };
   }
 
@@ -36,7 +37,8 @@ class PropertyReturns extends Component {
       Meteor.call('getAdminDistrict', { lat, lon }, (err, result) => {
         if (err) { console.log(err); return; }
 
-        const adminDistrict = result.data.result[0].admin_district.replace(/ /g, '-');
+        this.setState({ adminDistrict: result.data.result[0].admin_district });
+        const adminDistrict = this.state.adminDistrict.replace(/ /g, '-');
 
         Meteor.call('getAveragePrices', adminDistrict, (err, result) => {
           if (err) { console.log(err); return; }
@@ -132,7 +134,9 @@ class PropertyReturns extends Component {
           <span>Stamp duty: </span>
           <span className="u-floatRight">{`${stampDuty}%`}</span>
         </div>
-        <div className="PropertyReturns-chart">{this.state.fiveYearGrowth ?
+        {this.state.fiveYearGrowth ?
+        <div className="PropertyReturns-chart">
+          <span>5 year average growth in {this.state.adminDistrict}</span>
           <ResponsiveContainer height={230}>
             <BarChart width={300} height={230} data={data}>
               <XAxis dataKey="name" />
@@ -145,8 +149,8 @@ class PropertyReturns extends Component {
               </Bar>
             </BarChart>
           </ResponsiveContainer>
-          : null
-        }</div>
+        </div> : null
+        }
       </div>
     );
   }
