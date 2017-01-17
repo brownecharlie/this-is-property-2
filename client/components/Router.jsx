@@ -16,14 +16,14 @@ class AppRouter extends Component {
 
   requireAuth(nextState, replace, callback) {
     Meteor.subscribe('currentUser', {
-      onReady: function () {
+      onReady() {
         if (!Roles.userIsInRole(Meteor.userId(), ['admin'])) {
           replace({ pathname: '/' });
         }
         callback();
       },
-      onError: function (err) { 
-        console.log('error', err); 
+      onError(err) { 
+        console.error('--[ REQUIRE AUTH ERROR ]--', err); 
       }
     });
   };

@@ -4,7 +4,12 @@ Meteor.publish('currentUser', function () {
 
 Meteor.publish('allUsers', function(){
   if (Roles.userIsInRole(this.userId, ['admin'])) {
-    return Meteor.users.find();
+    return Meteor.users.find({}, {
+      fields: {
+        'profile': 1,
+        'emails': 1,
+        'services.facebook.email': 1,
+      }});
   }
   return null;
 });
