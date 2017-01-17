@@ -3,15 +3,16 @@ import { Meteor } from 'meteor/meteor';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 
-import App from './components/App.jsx';
+import Router from './components/Router';
+
 import store from './store';
 
-import './startup/accountsConfig.js';
+import './startup/accountsConfig';
  
 Meteor.startup(() => {
   render(
     <Provider store={store}>
-      <App />
+      <Router />
     </Provider>,
     document.getElementById('root')
   );

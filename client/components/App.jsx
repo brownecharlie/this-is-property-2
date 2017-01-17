@@ -1,17 +1,11 @@
 import React, { Component, PropTypes } from 'react';
-import { findDOMNode } from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 import getListings from '../utils/getListings';
-
 import { updateListings } from '../actions/propertyListings';
- 
-import AccountsUIWrapper from './Accounts';
-import FormContainer from './FormContainer';
-import ReturnsContainer from './ReturnsContainer';
-import ListingsContainer from './ListingsContainer';
 
 class App extends Component {
   constructor(props) {
@@ -19,12 +13,12 @@ class App extends Component {
   }
 
   componentWillMount() {
-    const { onUpdateListings } = this.props;
+    const { onUpdateListings, propertyInputs } = this.props;
 
     Meteor.call('getUserLocationFromIp', (err, userLocation) => {
       if (err) { console.log(err); return; }
 
-      getListings({ ...this.props, location: userLocation.city }, listings => {
+      getListings({ ...propertyInputs, location: userLocation.city }, listings => {
         onUpdateListings(listings);
       });
     });
@@ -33,10 +27,13 @@ class App extends Component {
   render() {
     return (
       <div className="AppContainer">
-        <AccountsUIWrapper />
-        <FormContainer />
-        <ListingsContainer />
-        <ReturnsContainer />
+        <header className="AppHeader">
+          <Link to="/">Home </Link>
+          <Link to="/about">About </Link>
+          <Link to="/admin">Admin</Link>
+        </header>
+        {this.props.children}
+        <footer className="AppFooter">This is the footer</footer>
       </div>
     );
   }
@@ -44,37 +41,18 @@ class App extends Component {
 
 App.propTypes = {
   currentUser: PropTypes.object,
-  minPrice: PropTypes.number,
-  maxPrice: PropTypes.number,
-  minBeds: PropTypes.number,
-  location: PropTypes.string,
-  radius: PropTypes.number,
-  type: PropTypes.string,
-  orderBy: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  propertyInputs: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({
-  minPrice: state.propertyInputs.minPrice,
-  maxPrice: state.propertyInputs.maxPrice,
-  minBeds: state.propertyInputs.minBeds,
-  location: state.propertyInputs.location,
-  radius: state.propertyInputs.radius,
-  type: state.propertyInputs.type,
-  orderBy: state.propertyInputs.orderBy,
+  propertyInputs: state.propertyInputs,
 });
- 
+
 const mapDispatchToProps = (dispatch) => ({
   onUpdateListings(listings) {
     dispatch(updateListings(listings));
   },
 });
 
-export default createContainer(() => {
-  // Meteor.subscribe('tasks');
-
-  return {
-    // tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
-    // incompleteCount: Tasks.find({ checked: { $ne: true } }).count(),
-    currentUser: Meteor.user(),
-  };
-}, connect(mapStateToProps, mapDispatchToProps)(App));
+export default connect(mapStateToProps, mapDispatchToProps)(App);
