@@ -34,7 +34,7 @@ class Radius extends Component {
     const { radius } = this.props;
 
     return (
-      <div className="FormInput PropertyInput PropertyInput-radius">
+      <div className="PropertySection-radius u-formInput">
         <span>Distance from location </span>
         <Select onChange={this.onChange} value={`${radius}`}>
           {this.selectOptions}

@@ -5,16 +5,9 @@ import { connect } from 'react-redux';
 import Button from 'antd/lib/button';
 import 'antd/lib/button/style/css';
 
-import { updateListings } from '../../actions/propertyListings';
+import { updateListings } from '../../../actions/propertyListings';
 
-import Price from '../Inputs/Property/Price';
-import Beds from '../Inputs/Property/Beds';
-import Location from '../Inputs/Property/Location';
-import Radius from '../Inputs/Property/Radius';
-import Type from '../Inputs/Property/Type';
-import OrderBy from '../Inputs/Property/OrderBy';
-
-class PropertySection extends Component {
+class GetListings extends Component {
   constructor(props) {
     super(props);
 
@@ -52,22 +45,14 @@ class PropertySection extends Component {
 
   render() {
     return (
-      <div className="PropertySection">
-        <Price />
-        <Location />
-        <Beds />
-        <Radius />
-        <Type />
-        <OrderBy />
-        <div className="FormInput PropertyInput PropertyInput-getListings">
-          <Button onClick={this.onClickGetListings} type="ghost">Get listings</Button>
-        </div>
+      <div className="GetListings u-formInput">
+        <Button onClick={this.onClickGetListings} type="ghost">Get listings</Button>
       </div>
     );
   }
 }
 
-PropertySection.propTypes = {
+GetListings.propTypes = {
   minPrice: PropTypes.number,
   maxPrice: PropTypes.number,
   minBeds: PropTypes.number,
@@ -96,4 +81,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PropertySection);
+)(GetListings);

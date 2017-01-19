@@ -1,9 +1,9 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 
-import PropertyReturns from './Returns/PropertyReturns';
-import DayOnePayment from './Returns/DayOnePayment';
-import MortgagePayments from './Returns/MortgagePayments';
+import PropertyReturns from './returns/PropertyReturns';
+import DayOnePayment from './returns/DayOnePayment';
+import MortgagePayments from './returns/MortgagePayments';
 
 export default function PropertyForm() {
   return (

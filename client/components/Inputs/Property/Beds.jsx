@@ -30,7 +30,7 @@ class Beds extends Component {
     const { minBeds } = this.props;
 
     return (
-      <div className="FormInput PropertyInput PropertyInput-beds">
+      <div className="PropertySection-beds u-formInput">
         <span>Beds </span>
         <Select onChange={this.onChange} value={`${minBeds}`}>
           {this.selectOptions}

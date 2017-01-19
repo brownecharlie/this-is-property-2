@@ -30,7 +30,7 @@ class Type extends Component {
     const { type } = this.props;
 
     return (
-      <div className="FormInput PropertyInput PropertyInput-type">
+      <div className="PropertySection-type u-formInput">
         <span>Property type </span>
         <Select onChange={this.onChange} value={type}>
           {this.selectOptions}

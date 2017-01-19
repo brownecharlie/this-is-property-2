@@ -15,3 +15,24 @@ body {
 .u-md-textSize { font-size: $font-size-md; }
 .u-sm-textSize { font-size: $font-size-sm; }
 .u-xs-textSize { font-size: $font-size-xs; }
+
+.u-formInput {
+  @include gridle(12 sm 6 lg 4);
+
+  margin: 5px 0;
+  min-height: 54px;
+
+  > span {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .ant-select,
+  .ant-input-number {
+    width: 100%;
+  }
+
+  .ant-switch {
+    width: 40px;
+  }
+}

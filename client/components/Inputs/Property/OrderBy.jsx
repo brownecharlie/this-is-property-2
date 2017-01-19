@@ -30,7 +30,7 @@ class OrderBy extends Component {
     const { orderBy } = this.props;
 
     return (
-      <div className="FormInput PropertyInput PropertyInput-orderBy">
+      <div className="PropertySection-orderBy u-formInput">
         <span>Order by </span>
         <Select onChange={this.onChange} value={orderBy}>
           {this.selectOptions}

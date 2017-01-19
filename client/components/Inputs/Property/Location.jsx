@@ -24,7 +24,7 @@ class Location extends Component {
     const { location } = this.props;
 
     return (
-      <div className="FormInput PropertyInput PropertyInput-location">
+      <div className="PropertySection-location u-formInput">
         <span>Location </span>
         <Input onChange={this.onChange} value={location} />
       </div>

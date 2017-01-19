@@ -28,7 +28,7 @@ class Price extends Component {
     const { minPrice, maxPrice } = this.props;
 
     return (
-      <div className="FormInput PropertyInput PropertyInput-price">
+      <div className="PropertySection-price u-formInput">
         <span>Price </span>
         <Slider
           range

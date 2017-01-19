@@ -3,9 +3,9 @@ import { Meteor } from 'meteor/meteor';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 import App from './App';
-import Home from './Views/Home';
-import About from './Views/About';
-import Admin from './Views/Admin';
+import Home from './views/Home';
+import About from './views/About';
+import Admin from './views/Admin';
 
 class AppRouter extends Component {
   constructor(props) {
