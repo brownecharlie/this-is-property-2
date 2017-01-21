@@ -24,7 +24,7 @@ class HoldPeriod extends Component {
     const { holdPeriod } = this.props;
 
     return (
-      <div className="FormInput PurchaseInput PurchaseInput-holdPeriod">
+      <div className="PurchaseSection-holdPeriod u-formInput">
         <span>Hold period </span>
         <InputNumber min={0} onChange={this.onChange} value={holdPeriod} />
       </div>

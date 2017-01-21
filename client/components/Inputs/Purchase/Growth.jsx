@@ -24,7 +24,7 @@ class Growth extends Component {
     const { growth } = this.props;
 
     return (
-      <div className="FormInput PurchaseInput PurchaseInput-growth">
+      <div className="PurchaseSection-growth u-formInput">
         <span>Growth </span>
         <InputNumber min={0} onChange={this.onChange} value={growth} />
       </div>

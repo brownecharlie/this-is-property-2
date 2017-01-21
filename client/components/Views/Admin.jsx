@@ -1,9 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
-import { Link } from 'react-router';
 
-class App extends Component {
+class Admin extends Component {
   constructor(props) {
     super(props);
   }
@@ -42,7 +41,7 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
+Admin.propTypes = {
   users: PropTypes.array,
 };
 
@@ -52,4 +51,4 @@ export default createContainer(() => {
   return {
     users: Meteor.users.find().fetch(),
   };
-}, App);
+}, Admin);

@@ -2,13 +2,20 @@
 @import 'fonts';
 @import 'config';
 @import 'base';
+@import 'utilities';
 
-@import 'components/Containers';
+@import 'components/containers/FormContainer';
+@import 'components/containers/ListingsContainer';
+@import 'components/containers/ReturnsContainer';
 
-@import 'components/Returns/DayOnePayment';
-@import 'components/Returns/MortgagePayments';
-@import 'components/Returns/PropertyReturns';
+@import 'components/returns/DayOnePayment';
+@import 'components/returns/MortgagePayments';
+@import 'components/returns/PropertyReturns';
 
-@import 'components/Inputs/Property';
-@import 'components/Inputs/Purchase';
-@import 'components/Inputs/Mortgage';
+@import 'components/inputs/Property';
+@import 'components/inputs/Purchase';
+@import 'components/inputs/Mortgage';
+
+@import 'components/views/Home';
+
+@import 'components/Header';

@@ -4,6 +4,8 @@ import { createContainer } from 'meteor/react-meteor-data';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
+import Header from './Header';
+
 import getListings from '../utils/getListings';
 import { updateListings } from '../actions/propertyListings';
 
@@ -27,11 +29,7 @@ class App extends Component {
   render() {
     return (
       <div className="AppContainer">
-        <header className="AppHeader">
-          <Link to="/">Home </Link>
-          <Link to="/about">About </Link>
-          <Link to="/admin">Admin</Link>
-        </header>
+        <Header />
         {this.props.children}
         <footer className="AppFooter">This is the footer</footer>
       </div>

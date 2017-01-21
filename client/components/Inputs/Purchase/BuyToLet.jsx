@@ -24,7 +24,7 @@ class BuyToLet extends Component {
     const { buyToLet } = this.props;
 
     return (
-      <div className="FormInput PurchaseInput PurchaseInput-buyToLet">
+      <div className="PurchaseSection-buyToLet u-formInput">
         <span>Buy to let </span>
         <Switch onChange={this.onChange} />
       </div>

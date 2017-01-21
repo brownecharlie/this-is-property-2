@@ -24,7 +24,7 @@ class Term extends Component {
     const { term } = this.props;
 
     return (
-      <div className="FormInput MortgageInput MortgageInput-term">
+      <div className="MortgageSection-term u-formInput">
         <span>Term </span>
         <Slider
           min={5}

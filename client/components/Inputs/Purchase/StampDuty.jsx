@@ -25,7 +25,7 @@ class StampDuty extends Component {
     const { stampDuty } = this.props;
 
     return (
-      <div className="FormInput PurchaseInput PurchaseInput-stampDuty">
+      <div className="PurchaseSection-stampDuty u-formInput">
         <span>Stamp duty </span>
         <span>{stampDuty}%</span>
       </div>

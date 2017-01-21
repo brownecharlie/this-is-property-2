@@ -3,3 +3,8 @@ $font-size-sm: 14px;
 $font-size-md: 16px;
 $font-size-lg: 20px;
 $font-size-xl: 24px;
+
+h1 { font-size: $font-size-xl; }
+h2 { font-size: $font-size-lg; }
+h3 { font-size: $font-size-md; }
+p, span { font-size: $font-size-sm; }

@@ -24,7 +24,7 @@ class SurveyFees extends Component {
     const { surveyFees } = this.props;
 
     return (
-      <div className="FormInput PurchaseInput PurchaseInput-surveyFees">
+      <div className="PurchaseSection-surveyFees u-formInput">
         <span>Survey fees </span>
         <InputNumber min={0} onChange={this.onChange} value={surveyFees} />
       </div>

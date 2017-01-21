@@ -5,6 +5,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import App from './App';
 import Home from './views/Home';
 import About from './views/About';
+import Login from './views/Login';
 import Admin from './views/Admin';
 
 class AppRouter extends Component {
@@ -34,6 +35,7 @@ class AppRouter extends Component {
         <Route path="/" component={App}>
           <IndexRoute component={Home} />
           <Route path="/about" component={About} />
+          <Route path="/login" component={Login} />
           <Route path="/admin" component={Admin} onEnter={this.requireAuth} />
         </Route>
       </Router>

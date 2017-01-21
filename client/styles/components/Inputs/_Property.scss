@@ -1,11 +1,12 @@
-.PropertyInput-location {
+.PropertySection-location {
   input {
     display: inline-block;
   }
 }
 
-.PropertyInput-getListings {
-  margin-top: 10px;
+.PropertySection-getListings {
+  margin: 15px 0 0 0;
+  min-height: auto;
 
   button {
     span {

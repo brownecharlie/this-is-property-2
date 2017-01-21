@@ -30,7 +30,7 @@ class LoanType extends Component {
     const { loanType } = this.props;
 
     return (
-      <div className="FormInput MortgageInput MortgageInput-loanType">
+      <div className="MortgageSection-loanType u-formInput">
         <span>Loan type</span>
         <Select onChange={this.onChange} value={loanType}>
           {this.selectOptions}

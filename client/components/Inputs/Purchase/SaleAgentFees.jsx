@@ -24,7 +24,7 @@ class SaleAgentFees extends Component {
     const { saleAgentFees } = this.props;
 
     return (
-      <div className="FormInput PurchaseInput PurchaseInput-saleAgentFees">
+      <div className="PurchaseSection-saleAgentFees u-formInput">
         <span>Sale agent fees </span>
         <Slider
           min={0}

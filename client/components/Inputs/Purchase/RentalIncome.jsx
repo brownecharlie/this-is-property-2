@@ -24,7 +24,7 @@ class RentalIncome extends Component {
     const { rentalIncome } = this.props;
 
     return (
-      <div className="FormInput PurchaseInput PurchaseInput-rentalIncome">
+      <div className="PurchaseSection-rentalIncome u-formInput">
         <span>Rental income </span>
         <InputNumber min={0} onChange={this.onChange} value={rentalIncome} />
       </div>

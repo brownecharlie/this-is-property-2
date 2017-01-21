@@ -12,6 +12,7 @@
     "classnames": "^2.2.5",
     "geoip-lite": "^1.1.8",
     "gridle": "^2.0.48",
+    "gsap": "^1.19.1",
     "indexof": "0.0.1",
     "meteor-node-stubs": "~0.2.0",
     "react": "^15.4.1",

@@ -24,7 +24,7 @@ class PurchaseLegalFees extends Component {
     const { purchaseLegalFees } = this.props;
 
     return (
-      <div className="FormInput PurchaseInput PurchaseInput-purchaseLegalFees">
+      <div className="PurchaseSection-purchaseLegalFees u-formInput">
         <span>Purchase legal fees </span>
         <InputNumber min={0} onChange={this.onChange} value={purchaseLegalFees} />
       </div>

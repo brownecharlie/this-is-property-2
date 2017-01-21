@@ -28,7 +28,7 @@ class Deposit extends Component {
     const { deposit } = this.props;
 
     return (
-      <div className="FormInput MortgageInput MortgageInput-deposit">
+      <div className="MortgageSection-deposit u-formInput">
         <span>Deposit </span>
         <Slider
           min={0}

@@ -1,5 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { findDOMNode } from 'react-dom';
 import { Meteor } from 'meteor/meteor';
+import TweenMax from 'gsap';
+
+import Icon from 'antd/lib/icon';
+import 'antd/lib/icon/style/css';
 
 import PriceRange from './inputs/property/Price';
 import Beds from './inputs/property/Beds';
@@ -27,43 +32,94 @@ import BrokerFee from './inputs/mortgage/BrokerFee';
 import LoanType from './inputs/mortgage/LoanType';
 import Term from './inputs/mortgage/Term';
 
-export default function PropertyForm() {
-  return (
-    <article className="FormContainer">
-      <section className="PropertySection">
-        <header className="PropertySection-header">
-          <h2>Property Information</h2>
-        </header>
-        <PriceRange />
-        <Location />
-        <Beds />
-        <Radius />
-        <Type />
-        <OrderBy />
-        <GetListings />
-      </section>
+export default class PropertyForm extends Component {
+  constructor() {
+    super();
 
-      <section className="PurchaseSection">
-        <Price />
-        <BuyToLet />
-        <StampDuty />
-        <HoldPeriod />
-        <Growth />
-        <RentalIncome />
-        <SurveyFees />
-        <PurchaseLegalFees />
-        <PurchaseAgentFees />
-        <SaleLegalFees />
-        <SaleAgentFees />
-      </section>
+    this.headerClicked = this.headerClicked.bind(this);
+  }
 
-      <section className="MortgageSection">
-        <Deposit />
-        <InterestRate />
-        <BrokerFee />
-        <LoanType />
-        <Term />
-      </section>
-    </article>
-  );
+  componentDidMount() {
+    const inputSections = document.querySelectorAll('.FormContainer-inputs');
+
+    for (const section of inputSections) {
+      section.setAttribute('data-height', section.clientHeight);
+      if (Array.from(inputSections).indexOf(section) !== 0) {
+        TweenMax.set(section, { height: 0 });
+      }
+    }
+  }
+
+  headerClicked(event) {
+    const target = event.currentTarget.parentElement.querySelector('.FormContainer-inputs');
+
+    event.currentTarget.parentElement.classList.toggle('is-active');
+
+    TweenMax.to(target, 0.5, {
+      height: target.clientHeight === 0 ? target.getAttribute('data-height') : 0,
+      ease: Power3.easeOut,
+    });
+  }
+
+  render() {
+    return (
+      <article className="FormContainer">
+        <section className="FormContainer-section is-active">
+          <header className="FormContainer-header" onClick={this.headerClicked}>
+            <h3>Property Search</h3>
+            <Icon type="caret-down" className="u-floatRight"/>
+          </header>
+          <div className="FormContainer-inputs" ref="inputs">
+            <div className="FormContainer-inputWrapper">
+              <PriceRange />
+              <Location />
+              <Beds />
+              <Radius />
+              <Type />
+              <OrderBy />
+              <GetListings />
+            </div>
+          </div>
+        </section>
+
+        <section className="FormContainer-section">
+          <header className="FormContainer-header" onClick={this.headerClicked}>
+            <h3>Purchase Information</h3>
+            <Icon type="caret-down" className="u-floatRight"/>
+          </header>
+          <div className="FormContainer-inputs" ref="inputs">
+            <div className="FormContainer-inputWrapper">
+              <Price />
+              <BuyToLet />
+              <StampDuty />
+              <HoldPeriod />
+              <Growth />
+              <RentalIncome />
+              <SurveyFees />
+              <PurchaseLegalFees />
+              <PurchaseAgentFees />
+              <SaleLegalFees />
+              <SaleAgentFees />
+            </div>
+          </div>
+        </section>
+
+        <section className="FormContainer-section">
+          <header className="FormContainer-header" onClick={this.headerClicked}>
+            <h3>Mortgage Information</h3>
+            <Icon type="caret-down" className="u-floatRight"/>
+          </header>
+          <div className="FormContainer-inputs" ref="inputs">
+            <div className="FormContainer-inputWrapper">
+              <Deposit />
+              <InterestRate />
+              <BrokerFee />
+              <LoanType />
+              <Term />
+            </div>
+          </div>
+        </section>
+      </article>
+    );
+  }
 }

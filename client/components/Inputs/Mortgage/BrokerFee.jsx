@@ -24,7 +24,7 @@ class BrokerFee extends Component {
     const { brokerFee } = this.props;
 
     return (
-      <div className="FormInput MortgageInput MortgageInput-brokerFee">
+      <div className="MortgageSection-brokerFee u-formInput">
         <span>Broker fee </span>
         <InputNumber onChange={this.onChange} value={brokerFee} />
       </div>

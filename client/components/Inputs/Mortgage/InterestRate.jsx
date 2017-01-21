@@ -24,7 +24,7 @@ class InterestRate extends Component {
     const { interestRate } = this.props;
 
     return (
-      <div className="FormInput MortgageInput MortgageInput-interestRate">
+      <div className="MortgageSection-interestRate u-formInput">
         <span>Interest rate </span>
         <InputNumber min={0} onChange={this.onChange} value={interestRate} />
       </div>

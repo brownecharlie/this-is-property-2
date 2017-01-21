@@ -24,7 +24,7 @@ class Price extends Component {
     const { price } = this.props;
 
     return (
-      <div className="FormInput PurchaseInput PurchaseInput-price">
+      <div className="PurchaseSection-price u-formInput">
         <span>Price </span>
         <InputNumber min={0} onChange={this.onChange} value={price} />
       </div>
