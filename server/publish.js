@@ -9,6 +9,7 @@ Meteor.publish('allUsers', function(){
         'profile': 1,
         'emails': 1,
         'services.facebook.email': 1,
+        'roles': 1,
       }});
   }
   return null;

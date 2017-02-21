@@ -3,8 +3,6 @@ import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 import { Link } from 'react-router';
 
-import AccountsUIWrapper from './Accounts';
-
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -16,17 +14,23 @@ class Header extends Component {
     }
     return null;
   }
+
+  get loginLink() {
+    if (this.props.userId) {
+      return <a to="/logout" onClick={() => { Meteor.logout(); }}>Log Out </a>
+    }
+    return <Link to="/login">Log In </Link>;
+  }
  
   render() {
     const { users } = this.props;
 
     return (
       <header className="AppHeader">
-        <AccountsUIWrapper />
         <nav>
           <Link to="/">Home </Link>
           <Link to="/about">About </Link>
-          <Link to="/login">Login </Link>
+          {this.loginLink}
           {this.adminLink}
         </nav>
       </header>

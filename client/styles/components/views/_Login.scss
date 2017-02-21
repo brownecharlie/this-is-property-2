@@ -1,0 +1,16 @@
+.LoginForm {
+  width: 380px;
+  margin: 0 auto;
+  padding: 40px;
+  background-color: $color-white;
+  margin-bottom: 4px;
+  box-shadow: 0px 0px 5px 1px rgba($color-black, 0.1);
+}
+
+.LoginForm-forgot {
+  float: right;
+}
+
+.LoginForm-button {
+  width: 100%;
+}

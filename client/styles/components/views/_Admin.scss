@@ -1,0 +1,12 @@
+.Admin {
+  @include gridle(8 prefix 2 suffix 2);
+}
+
+ul.Admin-header {}
+li.Admin-headerItem {}
+
+ul.Admin-table {}
+li.Admin-tableRow {}
+
+ul.Admin-tableUser {}
+li.Admin-tableUserItem {}
