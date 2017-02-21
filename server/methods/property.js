@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { HTTP } from 'meteor/http'
 import { check } from 'meteor/check';
 import querystring from 'querystring';
 import geoip from 'geoip-lite';
@@ -25,7 +26,7 @@ Meteor.methods({
 
     const url = `${hostname}${path}${endpoint}?${query}`;
  
-    return Meteor.http.get(url);
+    return HTTP.get(url);
   },
 
   getAdminDistrict(params) {
@@ -39,7 +40,7 @@ Meteor.methods({
 
     const url = `${hostname}${endpoint}?${query}`;
  
-    return Meteor.http.get(url);
+    return HTTP.get(url);
   },
 
   getAveragePrices(adminDistrict) {
@@ -56,6 +57,6 @@ Meteor.methods({
 
     const url = `${hostname}${path}${endpoint}?${query}`;
  
-    return Meteor.http.get(url);
+    return HTTP.get(url);
   },
 });
