@@ -34,40 +34,40 @@ function DayOnePayment ({ buyToLet, price, purchaseLegalFees, purchaseAgentFees,
         <Icon type="caret-down" className="u-floatRight"/>
       </header>
       <div className="ReturnsContainer-values">
-        <div className="ReturnsContainer-valuesWrapper">
-          <div className="ReturnsContainer-total">
+        <ul>
+          <li className="ReturnsContainer-total">
             <span>Day one payment: </span>
             <span className="u-floatRight">{formatCurrency(dayOnePayment)}</span>
-          </div>
-          <div className="ReturnsContainer-depositPaid">
+          </li>
+          <li className="ReturnsContainer-depositPaid">
             <span>Deposit paid: </span>
             <span className="u-floatRight">{formatCurrency(depositPaid)}</span>
-          </div>
-          <div className="ReturnsContainer-stamDutyPaid">
+          </li>
+          <li className="ReturnsContainer-stamDutyPaid">
             <span>Stamp duty (£): </span>
             <span className="u-floatRight">{formatCurrency(stampDutyPaid)}</span>
-          </div>
-          <div className="ReturnsContainer-stamDutyPercentage">
+          </li>
+          <li className="ReturnsContainer-stamDutyPercentage">
             <span>Stamp duty (%): </span>
             <span className="u-floatRight">{`${stampDuty}%`}</span>
-          </div>
-          <div className="ReturnsContainer-buyToLet">
+          </li>
+          <li className="ReturnsContainer-buyToLet">
             <span>Buy to let: </span>
             <span className="u-floatRight">{buyToLet ? 'Yes' : 'No'}</span>
-          </div>
-          <div className="ReturnsContainer-legalFees">
+          </li>
+          <li className="ReturnsContainer-legalFees">
             <span>Legal Fees: </span>
             <span className="u-floatRight">{formatCurrency(purchaseLegalFees)}</span>
-          </div>
-          <div className="ReturnsContainer-brokerFee">
+          </li>
+          <li className="ReturnsContainer-brokerFee">
             <span>Broker Fee: </span>
             <span className="u-floatRight">{formatCurrency(brokerFee)}</span>
-          </div>
-          <div className="ReturnsContainer-surveyFees">
+          </li>
+          <li className="ReturnsContainer-surveyFees">
             <span>Survey Fees: </span>
             <span className="u-floatRight">{formatCurrency(surveyFees)}</span>
-          </div>
-          <div className="ReturnsContainer-chart">
+          </li>
+          <li className="ReturnsContainer-chart">
             <ResponsiveContainer height={250}>
               <PieChart width={250} height={250}>
                 <Pie
@@ -84,8 +84,8 @@ function DayOnePayment ({ buyToLet, price, purchaseLegalFees, purchaseAgentFees,
                 </Pie>
               </PieChart>
             </ResponsiveContainer>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
     </section>
   );

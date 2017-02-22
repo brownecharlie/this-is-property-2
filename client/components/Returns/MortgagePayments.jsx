@@ -42,40 +42,40 @@ function MortgagePayments ({ price, brokerFee, deposit, interestRate, loanType, 
         <Icon type="caret-down" className="u-floatRight"/>
       </header>
       <div className="ReturnsContainer-values">
-        <div className="ReturnsContainer-valuesWrapper">
-          <div className="ReturnsContainer-loanAmount">
+        <ul>
+          <li className="ReturnsContainer-loanAmount">
             <span>Loan Amount: </span>
             <span className="u-floatRight">{formatCurrency(loanAmount)}</span>
-          </div>
-          <div className="ReturnsContainer-deposit">
+          </li>
+          <li className="ReturnsContainer-deposit">
             <span>Deposit ({deposit}%): </span>
             <span className="u-floatRight">{formatCurrency(depositPaid)}</span>
-          </div>
-          <div className="ReturnsContainer-term">
+          </li>
+          <li className="ReturnsContainer-term">
             <span>Mortgage term: </span>
             <span className="u-floatRight">{term} years</span>
-          </div>
-          <div className="ReturnsContainer-brokerFee">
+          </li>
+          <li className="ReturnsContainer-brokerFee">
             <span>Broker fee: </span>
             <span className="u-floatRight">{formatCurrency(brokerFee)}</span>
-          </div>
-          <div className="ReturnsContainer-monthlyPayments">
+          </li>
+          <li className="ReturnsContainer-monthlyPayments">
             <span>Monthly payments: </span>
             <span className="u-floatRight">{formatCurrency(monthlyPayments)}</span>
-          </div>
-          <div className="ReturnsContainer-annualPayments">
+          </li>
+          <li className="ReturnsContainer-annualPayments">
             <span>Annual payments: </span>
             <span className="u-floatRight">{formatCurrency(annualPayments)}</span>
-          </div>
-          <div className="ReturnsContainer-interestRate">
+          </li>
+          <li className="ReturnsContainer-interestRate">
             <span>Interest rate: </span>
             <span className="u-floatRight">{interestRate}%</span>
-          </div>
-          <div className="ReturnsContainer-mortgageType">
+          </li>
+          <li className="ReturnsContainer-mortgageType">
             <span>Mortgage type: </span>
             <span className="u-floatRight">{capitalize(loanType)}</span>
-          </div>
-          <div className="ReturnsContainer-chart">
+          </li>
+          <li className="ReturnsContainer-chart">
             <ResponsiveContainer height={300}>
               <LineChart
                 width={730}
@@ -102,8 +102,8 @@ function MortgagePayments ({ price, brokerFee, deposit, interestRate, loanType, 
                 />
               </LineChart>
             </ResponsiveContainer>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
     </section>
   );

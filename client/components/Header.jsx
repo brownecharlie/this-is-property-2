@@ -6,6 +6,12 @@ import { Link } from 'react-router';
 class Header extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      active: false,
+    };
+
+    this.hamburgerClicked = this.hamburgerClicked.bind(this);
   }
 
   get adminLink() {
@@ -21,18 +27,31 @@ class Header extends Component {
     }
     return <Link to="/login">Log In </Link>;
   }
+
+  hamburgerClicked() {
+    this.setState({ active: !this.state.active });
+  }
  
   render() {
     const { users } = this.props;
+    const { active } = this.state;
 
     return (
-      <header className="AppHeader">
-        <nav>
-          <Link to="/">Home </Link>
-          <Link to="/about">About </Link>
-          {this.loginLink}
-          {this.adminLink}
+      <header className={`AppHeader ${active ? 'active' : ''}`}>
+        <nav className="AppHeader-nav">
+          <div className="navHamburger" onClick={this.hamburgerClicked}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div className="navLinks">
+            <Link to="/">Home </Link>
+            <Link to="/about">About </Link>
+            {this.loginLink}
+            {this.adminLink}
+          </div>
         </nav>
+        <h1 className="AppHeader-logo">THIS IS PROPERTY</h1>
       </header>
     );
   }
