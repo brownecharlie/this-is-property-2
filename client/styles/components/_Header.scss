@@ -1,8 +1,25 @@
+@keyframes lower-text {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+
+  75% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
 .AppHeader {
   @include gridle(container);
 
   &.active {
     .navHamburger {
+      transform: translate3d(0, -50px, 0);
+
       span {
         &:nth-of-type(1) {
           transform: translate3d(0,6px,0) rotate(-135deg);
@@ -19,7 +36,24 @@
     }
 
     .navLinks {
-      transform: translate3d(0, 0, 0);      
+      a {
+        animation-name: lower-text;
+        animation-duration: 1s;
+        animation-fill-mode: both;
+
+        &:nth-of-type(1) {
+          animation-delay: 0s;
+        }
+        &:nth-of-type(2) {
+          animation-delay: 0.05s;
+        }
+        &:nth-of-type(3) {
+          animation-delay: 0.1s;
+        }
+        &:nth-of-type(4) {
+          animation-delay: 0.15s;
+        }
+      }
     }
   }
 }
@@ -27,10 +61,11 @@
 .AppHeader-nav {
   .navHamburger {
     position: fixed;
-    top: 15px;
-    left: 15px;
+    top: 18px;
+    left: 18px;
     cursor: pointer;
     z-index: 1000;
+    transition: all 0.25s cubic-bezier(.455,.03,.515,.955);
 
     span {
       display: block;
@@ -47,25 +82,29 @@
   }
 
   .navLinks {
-    width: 150px;
-    height: 100%;
+    width: 100%;
+    height: 50px;
     position: fixed;
     top: 0;
     left: 0;
-    padding: 60px 30px 60px 0;
     background-color: $color-white;
     z-index: 999;
     box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
-    transform: translate3d(-100%, 0, 0);
-    transition: transform 0.3s ease-in-out;
+    transform: translate3d(0, -100%, 0);
+    transition: transform 0.25s cubic-bezier(.455,.03,.515,.955);
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
 
     a {
-      display: block;
-      margin-bottom: 20px;
-      text-align: right;
+      text-align: center;
+      margin: 0 10px;
+      color: $color-black;
+      transition: all 0.2s ease-out;
 
-      &:last-child {
-        margin-bottom: 0;
+      &:hover {
+        color: paleturquoise;
       }
     }
   }
@@ -76,6 +115,6 @@
 
   font-size: 40px;
   text-align: center;
-  margin: 15px 0 60px;
+  margin: 30px 0 60px;
   line-height: 32px;
 }

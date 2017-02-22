@@ -27,8 +27,10 @@ class App extends Component {
   }
  
   render() {
+    const { navActive } = this.props;
+
     return (
-      <div className="AppContainer">
+      <div className={`AppContainer ${navActive ? 'navActive' : ''}`}>
         <Header />
         {this.props.children}
         <footer className="AppFooter">This is the footer</footer>
@@ -45,6 +47,7 @@ App.propTypes = {
 
 const mapStateToProps = (state) => ({
   propertyInputs: state.propertyInputs,
+  navActive: state.navigation.navActive,
 });
 
 const mapDispatchToProps = (dispatch) => ({

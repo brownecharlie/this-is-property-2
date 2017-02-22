@@ -1,5 +1,13 @@
 body {
   @include font-roboto();
   font-size: $font-size-sm;
-  background-color: rgba($color-grey-light, 0.75) !important;
+  background-color: paleturquoise !important;
+}
+
+.AppContainer {
+  transition: all 0.25s cubic-bezier(.455,.03,.515,.955);
+
+  &.navActive {
+    transform: translate3d(0, 50px, 0);
+  }
 }

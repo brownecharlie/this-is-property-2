@@ -38,3 +38,8 @@ export const UPDATE_TERM = 'UPDATE_TERM';
  * LISTINGS
  */
 export const UPDATE_LISTINGS = 'UPDATE_LISTINGS';
+
+/**
+ * NAVIGATION
+ */
+export const UPDATE_NAV_ACTIVE = 'UPDATE_NAV_ACTIVE';

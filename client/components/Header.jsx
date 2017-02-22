@@ -1,15 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
+import { connect } from 'react-redux';
 import { Link } from 'react-router';
+
+import { updateNavActive } from '../actions/navigation';
 
 class Header extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      active: false,
-    };
 
     this.hamburgerClicked = this.hamburgerClicked.bind(this);
   }
@@ -29,15 +28,16 @@ class Header extends Component {
   }
 
   hamburgerClicked() {
-    this.setState({ active: !this.state.active });
+    const { onUpdateNavActive, navActive } = this.props;
+
+    onUpdateNavActive(!navActive);
   }
  
   render() {
-    const { users } = this.props;
-    const { active } = this.state;
+    const { users, navActive } = this.props;
 
     return (
-      <header className={`AppHeader ${active ? 'active' : ''}`}>
+      <header className={`AppHeader ${navActive ? 'active' : ''}`}>
         <nav className="AppHeader-nav">
           <div className="navHamburger" onClick={this.hamburgerClicked}>
             <span></span>
@@ -61,10 +61,21 @@ Header.propTypes = {
   userId: PropTypes.string,
 };
 
-export default createContainer(() => {
-  Meteor.subscribe('currentUser');
+const mapStateToProps = (state) => ({
+  navActive: state.navigation.navActive,
+});
 
+const mapDispatchToProps = (dispatch) => ({
+  onUpdateNavActive(active) {
+    dispatch(updateNavActive(active));
+  },
+});
+
+const meteorContainer = createContainer(() => {
+  Meteor.subscribe('currentUser');
   return {
     userId: Meteor.userId(),
   };
 }, Header);
+
+export default connect(mapStateToProps, mapDispatchToProps)(meteorContainer);
