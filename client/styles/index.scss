@@ -4,21 +4,21 @@
 @import 'utilities';
 @import 'base';
 
-@import 'components/Containers/FormContainer';
-@import 'components/Containers/ListingsContainer';
-@import 'components/Containers/ReturnsContainer';
+@import 'components/containers/FormContainer';
+@import 'components/containers/ListingsContainer';
+@import 'components/containers/ReturnsContainer';
 
 @import 'components/Returns/DayOnePayment';
 @import 'components/Returns/MortgagePayments';
 @import 'components/Returns/PropertyReturns';
 
-@import 'components/Inputs/Property';
-@import 'components/Inputs/Purchase';
-@import 'components/Inputs/Mortgage';
+@import 'components/inputs/Property';
+@import 'components/inputs/Purchase';
+@import 'components/inputs/Mortgage';
 
-@import 'components/Views/Home';
-@import 'components/Views/Login';
-@import 'components/Views/Register';
-@import 'components/Views/Admin';
+@import 'components/views/Home';
+@import 'components/views/Login';
+@import 'components/views/Register';
+@import 'components/views/Admin';
 
 @import 'components/Header';
