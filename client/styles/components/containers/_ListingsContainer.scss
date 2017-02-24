@@ -1,15 +1,47 @@
 .ListingsContainer {
   @include gridle(12 sm 5 prefix 1);
+}
 
-  ul {
-    @include gridle(container);
+.ListingsContainer-section {
+  background-color: $color-white;
+  margin-bottom: 4px;
+  box-shadow: 0px 0px 5px 1px rgba($color-black, 0.1);
 
-    background-color: $color-white;
-    padding: 15px;
-    margin-bottom: 4px;
-    box-shadow: 0px 0px 5px 1px rgba($color-black, 0.1);
-    box-sizing: border-box;
+  header i {
+    transition: transform 0.3s;
   }
+
+  &.is-active {
+    header {
+      border-bottom: 1px dashed $color-grey-light;
+
+      i {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
+
+.ListingsContainer-header {
+  padding: 15px;
+  cursor: pointer;
+  transition: background-color 0.25s;
+
+  &:hover {
+    background-color: rgba($color-grey-light, 0.25);
+  }
+
+  h3 {
+    display: inline-block;
+    text-transform: uppercase;
+  }
+}
+
+.ListingsContainer-listings {
+  @include gridle(container);
+
+  padding: 0 15px;
+  overflow: hidden;
 
   li {
     @include gridle(6);

@@ -43,7 +43,6 @@ export default class PropertyForm extends Component {
     const inputSections = document.querySelectorAll('.FormContainer-inputs');
 
     for (const section of inputSections) {
-      section.setAttribute('data-height', section.clientHeight);
       if (Array.from(inputSections).indexOf(section) !== 0) {
         TweenMax.set(section, { height: 0 });
       }
@@ -55,10 +54,18 @@ export default class PropertyForm extends Component {
 
     event.currentTarget.parentElement.classList.toggle('is-active');
 
-    TweenMax.to(target, 0.5, {
-      height: target.clientHeight === 0 ? target.getAttribute('data-height') : 0,
-      ease: Power3.easeOut,
-    });
+    if (!event.currentTarget.parentElement.classList.contains('is-active')) {
+      TweenMax.to(target, 0.5, {
+        height: 0,
+        ease: Power3.easeOut,
+      });      
+    } else {
+      TweenMax.set(target, { height: 'auto' });
+      TweenMax.from(target, 0.5, {
+        height: 0,
+        ease: Power3.easeOut,
+      });
+    }
   }
 
   render() {
