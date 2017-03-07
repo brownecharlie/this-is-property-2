@@ -6,8 +6,6 @@ import { Provider } from 'react-redux';
 import Router from './components/Router';
 
 import store from './store';
-
-import './startup/accountsConfig';
  
 Meteor.startup(() => {
   render(
