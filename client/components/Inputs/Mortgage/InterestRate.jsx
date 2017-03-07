@@ -26,7 +26,7 @@ class InterestRate extends Component {
     return (
       <div className="MortgageSection-interestRate u-formInput">
         <span>Interest rate </span>
-        <InputNumber min={0} onChange={this.onChange} value={interestRate} />
+        <InputNumber min={0} step={0.1} onChange={this.onChange} value={interestRate} />
       </div>
     );
   }

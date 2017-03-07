@@ -24,6 +24,10 @@ class Price extends Component {
     onUpdateMaxPrice(value[1]);
   }
 
+  setStep(min, max) {
+    return min * (max - min);
+  }
+
   render() {
     const { minPrice, maxPrice } = this.props;
 

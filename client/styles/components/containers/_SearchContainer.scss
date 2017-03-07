@@ -1,8 +1,8 @@
-.ListingsContainer {
+.SearchContainer {
   @include gridle(12);
 }
 
-.ListingsContainer-section {
+.SearchContainer-section {
   background-color: $color-white;
   margin-bottom: 4px;
   box-shadow: 0px 0px 5px 1px rgba($color-black, 0.1);
@@ -22,7 +22,7 @@
   }
 }
 
-.ListingsContainer-header {
+.SearchContainer-header {
   padding: 15px;
   cursor: pointer;
   transition: background-color 0.25s;
@@ -37,20 +37,11 @@
   }
 }
 
-.ListingsContainer-listings {
-  @include gridle(container);
-
+.SearchContainer-inputs {
   overflow: hidden;
+}
 
-  li {
-    @include gridle(6);
-
-    padding: 7px;
-    cursor: pointer;
-
-    img {
-      display: block;
-      width: 100%;
-    }
-  }
+.SearchContainer-inputWrapper {
+  @include gridle(container);
+  margin: 10px 0 20px;
 }

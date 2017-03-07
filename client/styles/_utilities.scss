@@ -7,7 +7,7 @@
 .u-xs-textSize { font-size: $font-size-xs; }
 
 .u-formInput {
-  @include gridle(12 sm 6 lg 4);
+  @include gridle(12 lg 6);
 
   margin: 5px 0;
   min-height: 54px;

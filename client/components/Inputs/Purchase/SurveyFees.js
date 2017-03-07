@@ -26,7 +26,7 @@ class SurveyFees extends Component {
     return (
       <div className="PurchaseSection-surveyFees u-formInput">
         <span>Survey fees </span>
-        <InputNumber min={0} onChange={this.onChange} value={surveyFees} />
+        <InputNumber min={0} step={25} onChange={this.onChange} value={surveyFees} />
       </div>
     );
   }

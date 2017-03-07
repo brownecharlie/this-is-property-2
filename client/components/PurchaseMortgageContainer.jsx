@@ -6,14 +6,6 @@ import TweenMax from 'gsap';
 import Icon from 'antd/lib/icon';
 import 'antd/lib/icon/style/css';
 
-import PriceRange from './inputs/property/Price';
-import Beds from './inputs/property/Beds';
-import Location from './inputs/property/Location';
-import Radius from './inputs/property/Radius';
-import Type from './inputs/property/Type';
-import OrderBy from './inputs/property/OrderBy';
-import GetListings from './inputs/property/GetListings';
-
 import Price from './inputs/purchase/Price';
 import StampDuty from './inputs/purchase/StampDuty';
 import BuyToLet from './inputs/purchase/BuyToLet';
@@ -40,7 +32,7 @@ export default class PropertyForm extends Component {
   }
 
   componentDidMount() {
-    const inputSections = document.querySelectorAll('.FormContainer-inputs');
+    const inputSections = document.querySelectorAll('.PurchaseMortgageContainer-inputs');
 
     for (const section of inputSections) {
       if (Array.from(inputSections).indexOf(section) !== 0) {
@@ -50,7 +42,7 @@ export default class PropertyForm extends Component {
   }
 
   headerClicked(event) {
-    const target = event.currentTarget.parentElement.querySelector('.FormContainer-inputs');
+    const target = event.currentTarget.parentElement.querySelector('.PurchaseMortgageContainer-inputs');
 
     event.currentTarget.parentElement.classList.toggle('is-active');
 
@@ -70,32 +62,14 @@ export default class PropertyForm extends Component {
 
   render() {
     return (
-      <article className="FormContainer">
-        <section className="FormContainer-section is-active">
-          <header className="FormContainer-header" onClick={this.headerClicked}>
-            <h3>Property Search</h3>
-            <Icon type="caret-down" className="u-floatRight"/>
-          </header>
-          <div className="FormContainer-inputs" ref="inputs">
-            <div className="FormContainer-inputWrapper">
-              <PriceRange />
-              <Location />
-              <Beds />
-              <Radius />
-              <Type />
-              <OrderBy />
-              <GetListings />
-            </div>
-          </div>
-        </section>
-
-        <section className="FormContainer-section">
-          <header className="FormContainer-header" onClick={this.headerClicked}>
+      <article className="PurchaseMortgageContainer">
+        <section className="PurchaseMortgageContainer-section is-active">
+          <header className="PurchaseMortgageContainer-header" onClick={this.headerClicked}>
             <h3>Purchase Information</h3>
             <Icon type="caret-down" className="u-floatRight"/>
           </header>
-          <div className="FormContainer-inputs" ref="inputs">
-            <div className="FormContainer-inputWrapper">
+          <div className="PurchaseMortgageContainer-inputs" ref="inputs">
+            <div className="PurchaseMortgageContainer-inputWrapper">
               <Price />
               <BuyToLet />
               <StampDuty />
@@ -111,13 +85,13 @@ export default class PropertyForm extends Component {
           </div>
         </section>
 
-        <section className="FormContainer-section">
-          <header className="FormContainer-header" onClick={this.headerClicked}>
+        <section className="PurchaseMortgageContainer-section">
+          <header className="PurchaseMortgageContainer-header" onClick={this.headerClicked}>
             <h3>Mortgage Information</h3>
             <Icon type="caret-down" className="u-floatRight"/>
           </header>
-          <div className="FormContainer-inputs" ref="inputs">
-            <div className="FormContainer-inputWrapper">
+          <div className="PurchaseMortgageContainer-inputs" ref="inputs">
+            <div className="PurchaseMortgageContainer-inputWrapper">
               <Deposit />
               <InterestRate />
               <BrokerFee />

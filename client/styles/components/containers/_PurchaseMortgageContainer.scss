@@ -1,10 +1,10 @@
-.FormContainer {
-  @include gridle(12 sm 10 prefix 1 suffix 1);
+.PurchaseMortgageContainer {
+  @include gridle(12);
 
   margin-bottom: 30px;
 }
 
-.FormContainer-section {
+.PurchaseMortgageContainer-section {
   background-color: $color-white;
   margin-bottom: 4px;
   box-shadow: 0px 0px 5px 1px rgba($color-black, 0.1);
@@ -24,7 +24,7 @@
   }
 }
 
-.FormContainer-header {
+.PurchaseMortgageContainer-header {
   padding: 15px;
   cursor: pointer;
   transition: background-color 0.25s;
@@ -39,11 +39,11 @@
   }
 }
 
-.FormContainer-inputs {
+.PurchaseMortgageContainer-inputs {
   overflow: hidden;
 }
 
-.FormContainer-inputWrapper {
+.PurchaseMortgageContainer-inputWrapper {
   @include gridle(container);
   margin: 10px 0 20px;
 }
