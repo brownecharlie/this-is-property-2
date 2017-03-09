@@ -16,9 +16,12 @@ import {
   calculateTotalMortgagePayment,
   calculateTotalRentalIncome,
   calculateProfit,
-  calculateDayOnePayment,
   calculateDeposit,
   calculateStampDuty,
+  calculateProfitOnCost,
+  calculateReturnOnEquity,
+  calculateGovernmentProfit,
+  calculateOwnersProfit,
 } from '../../utils/calculatePropertyReturns';
 
 class PropertyReturns extends Component {
@@ -42,6 +45,7 @@ class PropertyReturns extends Component {
       buyToLet,
       adminDistrict,
       fiveYearGrowth,
+      governmentLoan,
       headerClicked,
     } = this.props;
 
@@ -52,6 +56,9 @@ class PropertyReturns extends Component {
     const totalMortgagePayment = calculateTotalMortgagePayment(monthlyMortgagePayment, holdPeriod, brokerFee);
     const totalRentalIncome = calculateTotalRentalIncome(rentalIncome, holdPeriod);
     const profit = calculateProfit(salePrice, saleCosts, price, purchaseCosts, totalMortgagePayment, brokerFee, totalRentalIncome);
+    const profitOnCost = calculateProfitOnCost(profit, saleCosts, price, purchaseCosts, totalMortgagePayment, totalRentalIncome);
+    const governmentProfit = calculateGovernmentProfit(price, salePrice, governmentLoan);
+    const ownersProfit = calculateOwnersProfit(profit, governmentProfit);
 
     const data = [
       { name: 'Assumed Growth', value: growth, color: '#0088FE' },
@@ -66,6 +73,10 @@ class PropertyReturns extends Component {
         </header>
         <div className="ReturnsContainer-values">
           <ul>
+            <li className="ReturnsContainer-profit">
+              <span>Profit on cost: </span>
+              <span className="u-floatRight">{profitOnCost.toFixed(2)}%</span>
+            </li>
             <li className="ReturnsContainer-profit">
               <span>Profit: </span>
               <span className="u-floatRight">{formatCurrency(profit)}</span>
@@ -153,6 +164,7 @@ PropertyReturns.propTypes = {
   buyToLet: PropTypes.bool,
   adminDistrict: PropTypes.string,
   fiveYearGrowth: PropTypes.number,
+  governmentLoan: PropTypes.number,
   headerClicked: PropTypes.func.isRequired,
 };
 
@@ -174,6 +186,7 @@ const mapStateToProps = (state) => ({
   term: state.mortgageInputs.term,
   buyToLet: state.purchaseInputs.buyToLet,
   adminDistrict: state.propertySearch.adminDistrict,
+  governmentLoan: state.mortgageInputs.governmentLoan,
   fiveYearGrowth: state.propertySearch.fiveYearGrowth,
 });
 

@@ -25,7 +25,7 @@ class GovernmentLoan extends Component {
 
     return (
       <div className="MortgageSection-governmentLoan u-formInput">
-        <span>GovernmentLoan </span>
+        <span>Government loan </span>
         <Slider
           min={0}
           max={region === 'London' ? 40 : 20}

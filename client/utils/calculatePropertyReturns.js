@@ -59,7 +59,31 @@ export function calculateTotalRentalIncome(rentalIncome, holdPeriod) {
 }
 
 export function calculateProfit(salePrice, saleCosts, price, purchaseCosts, totalMortgagePayment, brokerFee, totalRentalIncome) {
-  return salePrice - saleCosts - price - purchaseCosts - totalMortgagePayment - brokerFee + totalRentalIncome;
+  return salePrice - (saleCosts + price + purchaseCosts + totalMortgagePayment + brokerFee) + totalRentalIncome;
+}
+
+export function calculateProfitOnCost(profit, saleCosts, price, purchaseCosts, totalMortgagePayment, totalRentalIncome) {
+  return profit / (saleCosts + price + purchaseCosts + totalMortgagePayment - totalRentalIncome) * 100;
+}
+
+export function calculateReturnOnEquity(ownersProfit, allInBorrowerCosts) {
+  return ownersProfit / allInBorrowerCosts;
+}
+
+export function calculateGovernmentProfit(purchasePrice, salePrice, governmentLoan) {
+  return (purchasePrice - salePrice) * governmentLoan;
+}
+
+export function calculateOwnersProfit(profit, governmentProfit) {
+  return profit - governmentProfit;
+}
+
+export function calculateBankCosts(interest, amortisation, brokerFee) {
+  return interest + amortisation + brokerFee;
+}
+
+export function calculateAllInBorrowerCosts(dayOnePayment, bankCosts) {
+  return dayOnePayment + bankCosts;
 }
 
 export function calculateDayOnePayment(deposit, purchaseAgentFees, stampDuty, price, purchaseLegalFees, surveyFees, brokerFee) {
