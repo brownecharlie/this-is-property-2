@@ -26,7 +26,13 @@ class BrokerFee extends Component {
     return (
       <div className="MortgageSection-brokerFee u-formInput">
         <span>Broker fee </span>
-        <InputNumber min={0} step={25} onChange={this.onChange} value={brokerFee} />
+        <InputNumber
+          formatter={value => `$ ${value}`}
+          min={0}
+          step={25}
+          onChange={this.onChange}
+          value={brokerFee}
+        />
       </div>
     );
   }

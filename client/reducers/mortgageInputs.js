@@ -5,6 +5,8 @@ import {
   UPDATE_LOAN_TYPE,
   UPDATE_TERM,
   UPDATE_GOVERNMENT_LOAN,
+  UPDATE_MORTGAGE_SIZE,
+  UPDATE_HOUSEHOLD_INCOME,
 } from '../constants';
 
 const initialState = {
@@ -14,6 +16,8 @@ const initialState = {
   loanType: 'amortising',
   term: 30,
   governmentLoan: 0,
+  mortgageSize: 80,
+  householdIncome: 90000,
 };
 
 const purchaseInputs = (state = initialState, action) => {
@@ -47,6 +51,16 @@ const purchaseInputs = (state = initialState, action) => {
       return {
         ...state,
         governmentLoan: action.payload,
+      };
+    case UPDATE_MORTGAGE_SIZE:
+      return {
+        ...state,
+        mortgageSize: action.payload,
+      };
+    case UPDATE_HOUSEHOLD_INCOME:
+      return {
+        ...state,
+        householdIncome: action.payload,
       };
     default:
       return state;

@@ -18,6 +18,10 @@ export function calculateStampDuty(stampDuty, price) {
   return stampDuty * price / 100;
 }
 
+export function calculateMortgageSize(governmentLoan, deposit) {
+  return 100 - governmentLoan - deposit;
+}
+
 export function calculateLoanAmount(price, deposit) {
   return price - (price * deposit / 100);
 }

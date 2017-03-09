@@ -24,6 +24,8 @@ import BrokerFee from './inputs/mortgage/BrokerFee';
 import LoanType from './inputs/mortgage/LoanType';
 import Term from './inputs/mortgage/Term';
 import GovernmentLoan from './inputs/mortgage/GovernmentLoan';
+import MortgageSize from './inputs/mortgage/MortgageSize';
+import HouseholdIncome from './inputs/mortgage/HouseholdIncome';
 
 export default class PropertyForm extends Component {
   constructor() {
@@ -94,11 +96,13 @@ export default class PropertyForm extends Component {
           <div className="PurchaseMortgageContainer-inputs" ref="inputs">
             <div className="PurchaseMortgageContainer-inputWrapper">
               <Deposit />
+              <GovernmentLoan />
+              <MortgageSize />
+              <HouseholdIncome />
               <InterestRate />
               <BrokerFee />
               <LoanType />
               <Term />
-              <GovernmentLoan />
             </div>
           </div>
         </section>

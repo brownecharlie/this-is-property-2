@@ -8,6 +8,8 @@ import Header from './Header';
 
 import getListings from '../utils/getListings';
 
+import { updateAppLoading } from '../actions/navigation';
+
 import {
   updateListing,
   updateAdminDistrict,
@@ -22,12 +24,15 @@ class App extends Component {
 
   componentWillMount() {
     const {
+      onUpdateAppLoading,
       onUpdateListing,
       onUpdateAdminDistrict,
       onUpdateRegion,
       onUpdateFiveYearGrowth,
       propertyInputs,
     } = this.props;
+
+    console.log(this.props.appLoading);
 
     Meteor.call('getUserLocationFromIp', (err, userLocation) => {
       if (err) { console.log(err); return; }
@@ -37,6 +42,8 @@ class App extends Component {
         onUpdateAdminDistrict(data.adminDistrict);
         onUpdateRegion(data.region);
         onUpdateFiveYearGrowth(data.fiveYearGrowth);
+
+        onUpdateAppLoading(false);
       });
     });
   }
@@ -56,15 +63,20 @@ class App extends Component {
 
 App.propTypes = {
   children: PropTypes.node.isRequired,
+  appLoading: PropTypes.bool,
   propertyInputs: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({
-  propertyInputs: state.propertyInputs,
+  appLoading: state.navigation.appLoading,
   navActive: state.navigation.navActive,
+  propertyInputs: state.propertyInputs,
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  onUpdateAppLoading(isLoading) {
+    dispatch(updateAppLoading(isLoading));
+  },
   onUpdateListing(listing) {
     dispatch(updateListing(listing));
   },

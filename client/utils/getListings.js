@@ -1,3 +1,5 @@
+import store from '../store';
+
 export default async function getListings(params, cb) {
   const { minPrice, maxPrice, minBeds, location, radius, type, orderBy } = params;
 
@@ -13,16 +15,47 @@ export default async function getListings(params, cb) {
     page_size: 20,
   };
 
-  const zooplaData = await Meteor.callPromise('getListings', query);
+  let zooplaData, postcodeData, landregistryData;
+
+  try {
+    zooplaData = await Meteor.callPromise('getListings', query);
+  } catch(error) {
+    console.log('Error fetching zoopla data:', error);
+  }
+
   const listing = zooplaData.data;
-
   const { latitude: lat, longitude: lon } = listing;
-  const postcodeData = await Meteor.callPromise('getAdminDistrict', { lat, lon });
 
-  const adminDistrict = postcodeData.data.result[0].admin_district;
-  const region = postcodeData.data.result[0].region;
+  console.log('Store:', store);
 
-  const landregistryData = await Meteor.callPromise('getAveragePrices', adminDistrict.replace(/ /g, '-'));
+  // console.log('Zoopla Data:', listing);
+
+  // if (listing.disambiguation) {
+  //   console.log('Disambiguation:', listing.disambiguation);
+  // }
+
+  try {
+    postcodeData = await Meteor.callPromise('getAdminDistrict', { lat, lon });
+  } catch(error) {
+    console.log('Error fetching postcode data:', error);
+  }
+
+  // console.log('Postcode data:', postcodeData);
+
+  const adminDistrict = postcodeData.data.result && postcodeData.data.result[0].admin_district || listing.county;
+  const region = postcodeData.data.result && postcodeData.data.result[0].region || listing.county;
+
+  // console.log('Admin District:', adminDistrict);
+  // console.log('Region:', region);
+
+  try {
+    landregistryData = await Meteor.callPromise('getAveragePrices', adminDistrict.replace(/ /g, '-'));
+  } catch(error) {
+    console.log('Error fetching land registry data:', error);
+  }
+
+  // console.log('Landregistry Data:', landregistryData.data.result.items);
+  // console.log('----------------------------------------------');
 
   const items = landregistryData.data.result.items;
   const fiveYearGrowth = (items[47].annualChange + items[35].annualChange + 
