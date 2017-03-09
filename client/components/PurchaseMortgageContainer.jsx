@@ -23,6 +23,7 @@ import InterestRate from './inputs/mortgage/InterestRate';
 import BrokerFee from './inputs/mortgage/BrokerFee';
 import LoanType from './inputs/mortgage/LoanType';
 import Term from './inputs/mortgage/Term';
+import GovernmentLoan from './inputs/mortgage/GovernmentLoan';
 
 export default class PropertyForm extends Component {
   constructor() {
@@ -97,6 +98,7 @@ export default class PropertyForm extends Component {
               <BrokerFee />
               <LoanType />
               <Term />
+              <GovernmentLoan />
             </div>
           </div>
         </section>

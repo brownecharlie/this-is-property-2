@@ -3,14 +3,14 @@ import { createStore, combineReducers } from 'redux';
 import propertyInputs from './reducers/propertyInputs';
 import purchaseInputs from './reducers/purchaseInputs';
 import mortgageInputs from './reducers/mortgageInputs';
-import propertyListings from './reducers/propertyListings';
+import propertySearch from './reducers/propertySearch';
 import navigation from './reducers/navigation';
 
 const reducer = combineReducers({
   propertyInputs,
   purchaseInputs,
   mortgageInputs,
-  propertyListings,
+  propertySearch,
   navigation,
 });
 

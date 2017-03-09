@@ -5,7 +5,14 @@ import { connect } from 'react-redux';
 import Button from 'antd/lib/button';
 import 'antd/lib/button/style/css';
 
-import { updateListings } from '../../../actions/propertyListings';
+import getListings from '../../../utils/getListings';
+
+import {
+  updateListing,
+  updateAdminDistrict,
+  updateRegion,
+  updateFiveYearGrowth,
+} from '../../../actions/propertySearch';
 
 class GetListings extends Component {
   constructor(props) {
@@ -16,30 +23,18 @@ class GetListings extends Component {
 
   onClickGetListings() {
     const {
-      minPrice,
-      maxPrice,
-      minBeds,
-      location,
-      radius,
-      type,
-      orderBy,
+      propertyInputs,
+      onUpdateListing,
+      onUpdateAdminDistrict,
+      onUpdateRegion,
+      onUpdateFiveYearGrowth,
     } = this.props;
 
-    const params = {
-      area: location,
-      radius: radius,
-      minimum_price: minPrice,
-      maximum_price: maxPrice === 10000000 ? null : maxPrice,
-      minimum_beds: minBeds,
-      property_type: type,
-      listing_status: 'sale',
-      order_by: orderBy,
-      page_size: 20,
-    };
-
-    Meteor.call('getListings', params, (err, result) => {
-      if (err) { console.log(err); return; }
-      this.props.onUpdateListings(result.data);
+    getListings({ ...propertyInputs }, data => {
+      onUpdateListing(data.listing);
+      onUpdateAdminDistrict(data.adminDistrict);
+      onUpdateRegion(data.region);
+      onUpdateFiveYearGrowth(data.fiveYearGrowth);
     });
   }
 
@@ -53,28 +48,25 @@ class GetListings extends Component {
 }
 
 GetListings.propTypes = {
-  minPrice: PropTypes.number,
-  maxPrice: PropTypes.number,
-  minBeds: PropTypes.number,
-  location: PropTypes.string,
-  radius: PropTypes.number,
-  type: PropTypes.string,
-  orderBy: PropTypes.string,
+  propertyInputs: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({
-  minPrice: state.propertyInputs.minPrice,
-  maxPrice: state.propertyInputs.maxPrice,
-  minBeds: state.propertyInputs.minBeds,
-  location: state.propertyInputs.location,
-  radius: state.propertyInputs.radius,
-  type: state.propertyInputs.type,
-  orderBy: state.propertyInputs.orderBy,
+  propertyInputs: state.propertyInputs,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onUpdateListings(listings) {
-    dispatch(updateListings(listings));
+  onUpdateListing(listing) {
+    dispatch(updateListing(listing));
+  },
+  onUpdateAdminDistrict(adminDistrict) {
+    dispatch(updateAdminDistrict(adminDistrict));
+  },
+  onUpdateRegion(region) {
+    dispatch(updateRegion(region));
+  },
+  onUpdateFiveYearGrowth(fiveYearGrowth) {
+    dispatch(updateFiveYearGrowth(fiveYearGrowth));
   },
 });
 

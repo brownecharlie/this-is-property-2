@@ -2,7 +2,6 @@ import {
   UPDATE_MIN_PRICE,
   UPDATE_MAX_PRICE,
   UPDATE_MIN_BEDS,
-  UPDATE_MAX_BEDS,
   UPDATE_LOCATION,
   UPDATE_RADIUS,
   UPDATE_TYPE,
@@ -26,13 +25,6 @@ export function updateMaxPrice(price) {
 export function updateMinBeds(beds) {
   return {
     type: UPDATE_MIN_BEDS,
-    payload: beds,
-  };
-}
-
-export function updateMaxBeds(beds) {
-  return {
-    type: UPDATE_MAX_BEDS,
     payload: beds,
   };
 }

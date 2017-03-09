@@ -22,41 +22,6 @@ import {
 } from '../../utils/calculatePropertyReturns';
 
 class PropertyReturns extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      fiveYearGrowth: null,
-      adminDistrict: null,
-    };
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const { propertyListings } = this.props;
-
-    if (propertyListings !== nextProps.propertyListings) {
-      const { latitude: lat, longitude: lon } = nextProps.propertyListings;
-
-      Meteor.call('getAdminDistrict', { lat, lon }, (err, result) => {
-        if (err) { console.log(err); return; }
-
-        this.setState({ adminDistrict: result.data.result[0].admin_district });
-        const adminDistrict = this.state.adminDistrict.replace(/ /g, '-');
-
-        Meteor.call('getAveragePrices', adminDistrict, (err, result) => {
-          if (err) { console.log(err); return; }
-
-          const items = result.data.result.items;
-          const fiveYearGrowth = (items[47].annualChange + items[35].annualChange + 
-                                  items[23].annualChange + items[11].annualChange + 
-                                  items[0].annualChange) / 5;
-
-          this.setState({ fiveYearGrowth });
-        });
-      });
-    }
-  }
-
   render() {
     const {
       growth,
@@ -75,6 +40,8 @@ class PropertyReturns extends Component {
       interestRate,
       term,
       buyToLet,
+      adminDistrict,
+      fiveYearGrowth,
       headerClicked,
     } = this.props;
 
@@ -87,8 +54,8 @@ class PropertyReturns extends Component {
     const profit = calculateProfit(salePrice, saleCosts, price, purchaseCosts, totalMortgagePayment, brokerFee, totalRentalIncome);
 
     const data = [
-      { name: 'Assumned Growth', value: growth, color: '#0088FE' },
-      { name: 'Projected Growth', value: this.state.fiveYearGrowth, color: '#00C49F' },
+      { name: 'Assumed Growth', value: growth, color: '#0088FE' },
+      { name: 'Projected Growth', value: fiveYearGrowth, color: '#00C49F' },
     ];
 
     return (
@@ -128,11 +95,11 @@ class PropertyReturns extends Component {
               <span className="u-floatRight">{formatCurrency(totalRentalIncome)}</span>
             </li>
             <li className="ReturnsContainer-holdPeriod">
-              <span>Hold period: </span>
+              <span>Hold period (years): </span>
               <span className="u-floatRight">{`${holdPeriod} years`}</span>
             </li>
             <li className="ReturnsContainer-holdPeriod">
-              <span>Growth (p/a): </span>
+              <span>Growth (% p.a.): </span>
               <span className="u-floatRight">{`${growth}%`}</span>
             </li>
             <li className="ReturnsContainer-buyToLet">
@@ -143,9 +110,9 @@ class PropertyReturns extends Component {
               <span>Stamp duty: </span>
               <span className="u-floatRight">{`${stampDuty}%`}</span>
             </li>
-            {this.state.fiveYearGrowth ?
+            {fiveYearGrowth ?
             <li className="ReturnsContainer-chart">
-              <span>5 year average growth in {this.state.adminDistrict}</span>
+              <span>5 year average growth in {adminDistrict}</span>
               <ResponsiveContainer height={230}>
                 <BarChart width={300} height={230} data={data}>
                   <XAxis dataKey="name" />
@@ -184,7 +151,8 @@ PropertyReturns.propTypes = {
   interestRate: PropTypes.number,
   term: PropTypes.number,
   buyToLet: PropTypes.bool,
-  propertyListings: PropTypes.object,
+  adminDistrict: PropTypes.string,
+  fiveYearGrowth: PropTypes.number,
   headerClicked: PropTypes.func.isRequired,
 };
 
@@ -205,7 +173,8 @@ const mapStateToProps = (state) => ({
   interestRate: state.mortgageInputs.interestRate,
   term: state.mortgageInputs.term,
   buyToLet: state.purchaseInputs.buyToLet,
-  propertyListings: state.propertyListings,
+  adminDistrict: state.propertySearch.adminDistrict,
+  fiveYearGrowth: state.propertySearch.fiveYearGrowth,
 });
 
 export default connect(

@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 import Slider from 'antd/lib/slider';
 import 'antd/lib/slider/style/css';
 
-import { updateDeposit } from '../../../actions/mortgageInputs';
+import { updateGovernmentLoan } from '../../../actions/mortgageInputs';
 
-class Deposit extends Component {
+class GovernmentLoan extends Component {
   constructor(props) {
     super(props);
 
@@ -15,23 +15,23 @@ class Deposit extends Component {
   }
 
   onChange(value) {
-    const { onUpdateDeposit } = this.props;
+    const { onUpdateGovernmentLoan } = this.props;
 
-    onUpdateDeposit(value);
+    onUpdateGovernmentLoan(value);
   }
 
   render() {
-    const { deposit } = this.props;
+    const { governmentLoan } = this.props;
 
     return (
-      <div className="MortgageSection-deposit u-formInput">
-        <span>Deposit </span>
+      <div className="MortgageSection-governmentLoan u-formInput">
+        <span>GovernmentLoan </span>
         <Slider
           min={0}
-          max={100}
+          max={20}
           step={1}
           onChange={this.onChange}
-          value={deposit}
+          value={governmentLoan}
           tipFormatter={value => `${value}%`}
         />
       </div>
@@ -39,21 +39,21 @@ class Deposit extends Component {
   }
 }
 
-Deposit.propTypes = {
-  deposit: PropTypes.number,
+GovernmentLoan.propTypes = {
+  governmentLoan: PropTypes.number,
 };
 
 const mapStateToProps = (state) => ({
-  deposit: state.mortgageInputs.deposit,
+  governmentLoan: state.mortgageInputs.governmentLoan,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onUpdateDeposit(deposit) {
-    dispatch(updateDeposit(deposit));
+  onUpdateGovernmentLoan(governmentLoan) {
+    dispatch(updateGovernmentLoan(governmentLoan));
   },
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Deposit);
+)(GovernmentLoan);

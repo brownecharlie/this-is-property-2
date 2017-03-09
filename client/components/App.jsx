@@ -7,7 +7,13 @@ import { Link } from 'react-router';
 import Header from './Header';
 
 import getListings from '../utils/getListings';
-import { updateListings } from '../actions/propertyListings';
+
+import {
+  updateListing,
+  updateAdminDistrict,
+  updateRegion,
+  updateFiveYearGrowth,
+} from '../actions/propertySearch';
 
 class App extends Component {
   constructor(props) {
@@ -15,13 +21,22 @@ class App extends Component {
   }
 
   componentWillMount() {
-    const { onUpdateListings, propertyInputs } = this.props;
+    const {
+      onUpdateListing,
+      onUpdateAdminDistrict,
+      onUpdateRegion,
+      onUpdateFiveYearGrowth,
+      propertyInputs,
+    } = this.props;
 
     Meteor.call('getUserLocationFromIp', (err, userLocation) => {
       if (err) { console.log(err); return; }
 
-      getListings({ ...propertyInputs, location: userLocation.city }, listings => {
-        onUpdateListings(listings);
+      getListings({ ...propertyInputs, location: userLocation.city }, data => {
+        onUpdateListing(data.listing);
+        onUpdateAdminDistrict(data.adminDistrict);
+        onUpdateRegion(data.region);
+        onUpdateFiveYearGrowth(data.fiveYearGrowth);
       });
     });
   }
@@ -40,7 +55,6 @@ class App extends Component {
 }
 
 App.propTypes = {
-  currentUser: PropTypes.object,
   children: PropTypes.node.isRequired,
   propertyInputs: PropTypes.object,
 };
@@ -51,8 +65,17 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onUpdateListings(listings) {
-    dispatch(updateListings(listings));
+  onUpdateListing(listing) {
+    dispatch(updateListing(listing));
+  },
+  onUpdateAdminDistrict(adminDistrict) {
+    dispatch(updateAdminDistrict(adminDistrict));
+  },
+  onUpdateRegion(region) {
+    dispatch(updateRegion(region));
+  },
+  onUpdateFiveYearGrowth(fiveYearGrowth) {
+    dispatch(updateFiveYearGrowth(fiveYearGrowth));
   },
 });
 

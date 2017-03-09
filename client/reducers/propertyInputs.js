@@ -2,7 +2,6 @@ import {
   UPDATE_MIN_PRICE,
   UPDATE_MAX_PRICE,
   UPDATE_MIN_BEDS,
-  UPDATE_MAX_BEDS,
   UPDATE_LOCATION,
   UPDATE_RADIUS,
   UPDATE_TYPE,
@@ -13,7 +12,6 @@ const initialState = {
   minPrice: 500000,
   maxPrice: 1000000,
   minBeds: 0,
-  maxBeds: 0,
   location: 'n5',
   radius: 0.25,
   type: 'houses',
@@ -36,11 +34,6 @@ const propertyInputs = (state = initialState, action) => {
       return {
         ...state,
         minBeds: action.payload,
-      };
-    case UPDATE_MAX_BEDS:
-      return {
-        ...state,
-        maxBeds: action.payload,
       };
     case UPDATE_LOCATION:
       return {

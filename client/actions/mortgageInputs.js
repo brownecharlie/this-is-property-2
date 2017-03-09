@@ -4,6 +4,7 @@ import {
   UPDATE_BROKER_FEE,
   UPDATE_LOAN_TYPE,
   UPDATE_TERM,
+  UPDATE_GOVERNMENT_LOAN,
 } from '../constants';
 
 export function updateDeposit(deposit) {
@@ -38,5 +39,12 @@ export function updateTerm(term) {
   return {
     type: UPDATE_TERM,
     payload: term,
+  };
+}
+
+export function updateGovernmentLoan(governmentLoan) {
+  return {
+    type: UPDATE_GOVERNMENT_LOAN,
+    payload: governmentLoan,
   };
 }

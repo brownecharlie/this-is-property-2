@@ -42,7 +42,7 @@ class ListingsContainer extends Component {
   }
 
   render() {
-    const listings = this.props.propertyListings.listing || [];
+    const listings = this.props.listing.listing || [];
 
     return (
       <div className="ListingsContainer">
@@ -63,11 +63,11 @@ class ListingsContainer extends Component {
 }
 
 ListingsContainer.propTypes = {
-  propertyListings: PropTypes.object,
+  listing: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({
-  propertyListings: state.propertyListings,
+  listing: state.propertySearch.listing,
 });
 
 const mapDispatchToProps = (dispatch) => ({

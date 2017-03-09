@@ -1,4 +1,4 @@
-export default function getListings(params, cb) {
+export default async function getListings(params, cb) {
   const { minPrice, maxPrice, minBeds, location, radius, type, orderBy } = params;
 
   const query = {
@@ -13,8 +13,28 @@ export default function getListings(params, cb) {
     page_size: 20,
   };
 
-  Meteor.call('getListings', query, (err, result) => {
-    if (err) { console.log(err); return; }
-    cb(result.data);
-  });
+  const zooplaData = await Meteor.callPromise('getListings', query);
+  const listing = zooplaData.data;
+
+  const { latitude: lat, longitude: lon } = listing;
+  const postcodeData = await Meteor.callPromise('getAdminDistrict', { lat, lon });
+
+  const adminDistrict = postcodeData.data.result[0].admin_district;
+  const region = postcodeData.data.result[0].region;
+
+  const landregistryData = await Meteor.callPromise('getAveragePrices', adminDistrict.replace(/ /g, '-'));
+
+  const items = landregistryData.data.result.items;
+  const fiveYearGrowth = (items[47].annualChange + items[35].annualChange + 
+                          items[23].annualChange + items[11].annualChange + 
+                          items[0].annualChange) / 5;
+
+  const data = {
+    listing,
+    adminDistrict,
+    region,
+    fiveYearGrowth,
+  };
+
+  cb(data);
 }
