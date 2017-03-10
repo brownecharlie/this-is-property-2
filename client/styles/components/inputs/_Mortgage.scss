@@ -1,0 +1,11 @@
+.PurchaseSection-MortgageSize {
+  div {
+    span {
+      display: none;
+
+      &:nth-of-type(1) {
+        display: block;
+      }
+    }
+  }
+}

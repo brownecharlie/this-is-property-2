@@ -7,6 +7,16 @@
   margin-bottom: 4px;
   box-shadow: 0px 0px 5px 1px rgba($color-black, 0.1);
 
+  .ReturnsContainer-values {
+    height: 0;
+  }
+
+  &:nth-of-type(1) {
+    .ReturnsContainer-values {
+      height: auto;
+    }
+  }
+
   header i {
     transition: transform 0.3s;
   }

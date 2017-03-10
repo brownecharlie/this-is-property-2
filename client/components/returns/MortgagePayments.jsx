@@ -1,39 +1,32 @@
 import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
-import { connect } from 'react-redux';
 
 import Icon from 'antd/lib/icon';
 import 'antd/lib/icon/style/css';
 
-import {
-  LineChart,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  Line,
-  ResponsiveContainer,
-} from 'recharts';
+import { LineChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Line, ResponsiveContainer } from 'recharts';
 
 import formatCurrency from '../../utils/formatCurrency';
-import {
-  calculateLoanAmount,
-  calculateDeposit,
-  calculateMortgagePayments,
-  calculateInterestAndAmortisation,
-} from '../../utils/calculatePropertyReturns';
 
-function MortgagePayments ({ price, brokerFee, deposit, interestRate, loanType, term, headerClicked }) {
-  const loanAmount = calculateLoanAmount(price, deposit);
-  const depositPaid = calculateDeposit(price, deposit);
-  const monthlyPayments = calculateMortgagePayments(price, deposit, loanType, interestRate, term).monthly;
-  const annualPayments = calculateMortgagePayments(price, deposit, loanType, interestRate, term).monthly * 12;
-  const interestAndAmortisation = calculateInterestAndAmortisation(loanAmount, annualPayments, interestRate, term);
+function MortgagePayments ({ calculations, headerClicked }) {
+  const {
+    brokerFee,
+    deposit,
+    interestRate,
+    loanType,
+    term,
+    loanAmount,
+    depositPaid,
+    monthlyMortgagePayment,
+    interestAndAmortisation,
+    interestPaid,
+    amortisationPaid,
+    bankCosts,
+  } = calculations;
 
   const capitalize = string => [...string].map(
-      (char, index) => index ? char : char.toUpperCase()
-   ).join('');
+    (char, index) => index ? char : char.toUpperCase()
+  ).join('');
 
   return (
     <section className="ReturnsContainer-section">
@@ -61,11 +54,11 @@ function MortgagePayments ({ price, brokerFee, deposit, interestRate, loanType, 
           </li>
           <li className="ReturnsContainer-monthlyPayments">
             <span>Monthly payments: </span>
-            <span className="u-floatRight">{formatCurrency(monthlyPayments)}</span>
+            <span className="u-floatRight">{formatCurrency(monthlyMortgagePayment)}</span>
           </li>
           <li className="ReturnsContainer-annualPayments">
             <span>Annual payments: </span>
-            <span className="u-floatRight">{formatCurrency(annualPayments)}</span>
+            <span className="u-floatRight">{formatCurrency(monthlyMortgagePayment * 12)}</span>
           </li>
           <li className="ReturnsContainer-interestRate">
             <span>Interest rate: </span>
@@ -74,6 +67,18 @@ function MortgagePayments ({ price, brokerFee, deposit, interestRate, loanType, 
           <li className="ReturnsContainer-mortgageType">
             <span>Mortgage type: </span>
             <span className="u-floatRight">{capitalize(loanType)}</span>
+          </li>
+          <li className="ReturnsContainer-interestPaid">
+            <span>Total interest payments: </span>
+            <span className="u-floatRight">{formatCurrency(interestPaid)}</span>
+          </li>
+          <li className="ReturnsContainer-amortisationPaid">
+            <span>Total amortisation: </span>
+            <span className="u-floatRight">{formatCurrency(amortisationPaid)}</span>
+          </li>
+          <li className="ReturnsContainer-bankPayments">
+            <span>Total bank payments: </span>
+            <span className="u-floatRight">{formatCurrency(bankCosts)}</span>
           </li>
           <li className="ReturnsContainer-chart">
             <ResponsiveContainer height={300}>
@@ -110,24 +115,8 @@ function MortgagePayments ({ price, brokerFee, deposit, interestRate, loanType, 
 }
 
 MortgagePayments.propTypes = {
-  price: PropTypes.number,
-  brokerFee: PropTypes.number,
-  deposit: PropTypes.number,
-  interestRate: PropTypes.number,
-  loanType: PropTypes.string,
-  term: PropTypes.number,
+  calculations: PropTypes.object,
   headerClicked: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  price: state.purchaseInputs.price,
-  brokerFee: state.mortgageInputs.brokerFee,
-  deposit: state.mortgageInputs.deposit,
-  interestRate: state.mortgageInputs.interestRate,
-  loanType: state.mortgageInputs.loanType,
-  term: state.mortgageInputs.term,
-});
-
-export default connect(
-  mapStateToProps,
-)(MortgagePayments);
+export default MortgagePayments;

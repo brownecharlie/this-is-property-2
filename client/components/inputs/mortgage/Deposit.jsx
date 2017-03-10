@@ -21,14 +21,14 @@ class Deposit extends Component {
   }
 
   render() {
-    const { deposit } = this.props;
+    const { deposit, governmentLoan } = this.props;
 
     return (
       <div className="MortgageSection-deposit u-formInput">
         <span>Deposit </span>
         <Slider
           min={0}
-          max={100}
+          max={100 - governmentLoan}
           step={1}
           onChange={this.onChange}
           value={deposit}
@@ -41,10 +41,12 @@ class Deposit extends Component {
 
 Deposit.propTypes = {
   deposit: PropTypes.number,
+  governmentLoan: PropTypes.number,
 };
 
 const mapStateToProps = (state) => ({
   deposit: state.mortgageInputs.deposit,
+  governmentLoan: state.mortgageInputs.governmentLoan,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -7,6 +7,10 @@ import { calculateMortgageSize } from '../../../utils/calculatePropertyReturns';
 import { updateMortgageSize } from '../../../actions/mortgageInputs';
 
 class MortgageSize extends Component {
+  componentDidMount() {
+    console.log(this.carousel);
+  }
+
   componentWillReceiveProps(nextProps) {
     const {
       deposit,
@@ -44,7 +48,11 @@ class MortgageSize extends Component {
     return (
       <div className="PurchaseSection-MortgageSize u-formInput">
         <span>Mortgage size </span>
-        <span>{mortgageSize}% - {formatCurrency(actualCost)} - {incomeMultiplier.toFixed(1)} * income</span>
+        <div ref={ref => this.carousel = ref}>
+          <span data-index="1">{mortgageSize}%</span>
+          <span data-index="2">{formatCurrency(actualCost)}</span>
+          <span data-index="3">{incomeMultiplier.toFixed(1)} * income</span>
+        </div>
       </div>
     );
   }

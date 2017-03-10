@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
-import { connect } from 'react-redux';
 
 import Icon from 'antd/lib/icon';
 import 'antd/lib/icon/style/css';
@@ -8,16 +7,22 @@ import 'antd/lib/icon/style/css';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
 import formatCurrency from '../../utils/formatCurrency';
-import {
-  calculateDayOnePayment,
-  calculateDeposit,
-  calculateStampDuty,
-} from '../../utils/calculatePropertyReturns';
 
-function DayOnePayment ({ buyToLet, price, purchaseLegalFees, purchaseAgentFees, surveyFees, brokerFee, stampDuty, deposit, headerClicked }) {
-  const dayOnePayment = calculateDayOnePayment(deposit, purchaseAgentFees, stampDuty, price, purchaseLegalFees, surveyFees, brokerFee);
-  const depositPaid = calculateDeposit(price, deposit);
-  const stampDutyPaid = calculateStampDuty(stampDuty, price);
+function DayOnePayment ({ calculations, headerClicked }) {
+  const {
+    buyToLet,
+    purchaseLegalFees,
+    surveyFees,
+    brokerFee,
+    stampDuty,
+    dayOnePayment,
+    depositPaid,
+    stampDutyPaid,
+    allInBorrowerCosts,
+    bankCosts,
+    interestPaid,
+    amortisationPaid,
+  } = calculations;
 
   const data = [
     { name: 'Broker Fee', value: brokerFee, color: '#FF8042' },
@@ -35,6 +40,10 @@ function DayOnePayment ({ buyToLet, price, purchaseLegalFees, purchaseAgentFees,
       </header>
       <div className="ReturnsContainer-values">
         <ul>
+          <li className="ReturnsContainer-allInCosts">
+            <span>All in borrower costs: </span>
+            <span className="u-floatRight">{formatCurrency(allInBorrowerCosts)}</span>
+          </li>
           <li className="ReturnsContainer-total">
             <span>Day one payment: </span>
             <span className="u-floatRight">{formatCurrency(dayOnePayment)}</span>
@@ -67,6 +76,18 @@ function DayOnePayment ({ buyToLet, price, purchaseLegalFees, purchaseAgentFees,
             <span>Survey Fees: </span>
             <span className="u-floatRight">{formatCurrency(surveyFees)}</span>
           </li>
+          <li className="ReturnsContainer-bankCosts">
+            <span>Bank costs: </span>
+            <span className="u-floatRight">{formatCurrency(bankCosts)}</span>
+          </li>
+          <li className="ReturnsContainer-interestPaid">
+            <span>Interest: </span>
+            <span className="u-floatRight">{formatCurrency(interestPaid)}</span>
+          </li>
+          <li className="ReturnsContainer-amortisation">
+            <span>Loan amortisation: </span>
+            <span className="u-floatRight">{formatCurrency(amortisationPaid)}</span>
+          </li>
           <li className="ReturnsContainer-chart">
             <ResponsiveContainer height={250}>
               <PieChart width={250} height={250}>
@@ -92,28 +113,8 @@ function DayOnePayment ({ buyToLet, price, purchaseLegalFees, purchaseAgentFees,
 }
 
 DayOnePayment.propTypes = {
-  buyToLet: PropTypes.bool,
-  price: PropTypes.number,
-  stampDuty: PropTypes.number,
-  purchaseAgentFees: PropTypes.number,
-  purchaseLegalFees: PropTypes.number,
-  surveyFees: PropTypes.number,
-  brokerFee: PropTypes.number,
-  deposit: PropTypes.number,
+  calculations: PropTypes.object.isRequired,
   headerClicked: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  buyToLet: state.purchaseInputs.buyToLet,
-  price: state.purchaseInputs.price,
-  stampDuty: state.purchaseInputs.stampDuty,
-  purchaseAgentFees: state.purchaseInputs.purchaseAgentFees,
-  purchaseLegalFees: state.purchaseInputs.purchaseLegalFees,
-  surveyFees: state.purchaseInputs.surveyFees,
-  brokerFee: state.mortgageInputs.brokerFee,
-  deposit: state.mortgageInputs.deposit,
-});
-
-export default connect(
-  mapStateToProps,
-)(DayOnePayment);
+export default DayOnePayment;

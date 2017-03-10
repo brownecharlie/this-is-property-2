@@ -10,11 +10,18 @@
   @include gridle(12 lg 6);
 
   margin: 5px 0;
-  min-height: 54px;
+  min-height: 60px;
 
   > span {
     display: block;
     margin-bottom: 5px;
+  }
+
+  &.PurchaseSection-buyToLet,
+  &.PurchaseSection-stampDuty {
+    @include gridle(6 lg 3);
+
+    min-height: 60px;
   }
 
   .ant-select,
