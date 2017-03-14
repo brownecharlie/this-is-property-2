@@ -1,4 +1,8 @@
-.u-floatRight { @include gridle(float right); }
+.u-floatRight {
+  @include gridle(float right);
+
+  margin-top: 2px;
+}
 
 .u-xl-textSize { font-size: $font-size-xl; }
 .u-lg-textSize { font-size: $font-size-lg; }
