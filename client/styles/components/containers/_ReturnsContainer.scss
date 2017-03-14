@@ -53,10 +53,44 @@
   ul {
     @include gridle(container);
 
-    margin: 10px 0 20px;
-
     li {
-      @include gridle(12);
+      @include gridle(12 lg 6);
+      @include gridle_state(lg) {
+        padding-top: 6px;
+        padding-bottom: 4px;
+      }
+
+      span {
+        font-size: 14px;
+      }
+
+      &.ReturnsContainer-profit {
+        span {
+          &.u-floatRight {
+            color: green;
+          }
+        }
+      }
+
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      padding-top: 2px;
+      padding-bottom: 1px;
+
+      &:nth-child(odd) {
+        border-right: 1px solid rgba(0,0,0,0.05);
+      }
+
+      &:last-child {
+        @include gridle(12);
+
+        border: none;
+        margin: 20px 0;
+      }
     }
+  }
+
+  .anticon {
+    margin-left: 5px;
+    cursor: pointer;
   }
 }

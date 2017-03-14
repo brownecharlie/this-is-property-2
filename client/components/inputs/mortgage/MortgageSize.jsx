@@ -2,13 +2,28 @@ import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { connect } from 'react-redux';
 
+import Icon from 'antd/lib/icon';
+import 'antd/lib/icon/style/css';
+
+import Popover from 'antd/lib/popover';
+import 'antd/lib/popover/style/css';
+
 import formatCurrency from '../../../utils/formatCurrency';
 import { calculateMortgageSize } from '../../../utils/calculatePropertyReturns';
 import { updateMortgageSize } from '../../../actions/mortgageInputs';
 
 class MortgageSize extends Component {
   componentDidMount() {
-    console.log(this.carousel);
+    const slides = this.carousel.children;
+
+    const tl = new TimelineMax({ repeat: -1 });
+
+    tl.to(slides[0], 0.5, { opacity: 1 })
+      .to(slides[0], 0.5, { opacity: 0 }, "+=3")
+      .to(slides[1], 0.5, { opacity: 1 })
+      .to(slides[1], 0.5, { opacity: 0 }, "+=3")
+      .to(slides[2], 0.5, { opacity: 1 })
+      .to(slides[2], 0.5, { opacity: 0 }, "+=3")
   }
 
   componentWillReceiveProps(nextProps) {
@@ -39,6 +54,14 @@ class MortgageSize extends Component {
     return true;
   }
 
+  get popoverContent() {
+    return (
+      <p>
+        Mortgage Lenders will generally lend a maximum of 4.5 times salary depending on the borrower.
+      </p>
+    )
+  }
+
   render() {
     const { mortgageSize, price, householdIncome } = this.props;
 
@@ -47,7 +70,16 @@ class MortgageSize extends Component {
 
     return (
       <div className="PurchaseSection-MortgageSize u-formInput">
-        <span>Mortgage size </span>
+        <span>
+          Mortgage size 
+          <Popover
+            title="Lending Criteria"
+            content={this.popoverContent}
+            overlayClassName="Popover"
+          >
+            <Icon type="info-circle-o" />
+          </Popover>
+        </span>
         <div ref={ref => this.carousel = ref}>
           <span data-index="1">{mortgageSize}%</span>
           <span data-index="2">{formatCurrency(actualCost)}</span>

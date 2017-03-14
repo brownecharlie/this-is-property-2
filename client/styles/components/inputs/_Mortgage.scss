@@ -1,11 +1,12 @@
 .PurchaseSection-MortgageSize {
   div {
-    span {
-      display: none;
+    position: relative;
 
-      &:nth-of-type(1) {
-        display: block;
-      }
+    span {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
     }
   }
 }

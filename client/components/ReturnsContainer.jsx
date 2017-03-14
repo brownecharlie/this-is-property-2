@@ -92,10 +92,20 @@ class RetursContanier extends Component {
     const allInBorrowerCosts = returns.calculateAllInBorrowerCosts(dayOnePayment, bankCosts);
     const returnOnEquity = returns.calculateReturnOnEquity(ownersProfit, allInBorrowerCosts);
 
+    const actualSaleAgentFees = saleAgentFees * salePrice / 100;
+    const actualPurchaseAgentFees = purchaseAgentFees * price / 100;
+
     const prProps = {
       price,
       growth,
       holdPeriod,
+      actualSaleAgentFees,
+      saleLegalFees,
+      actualPurchaseAgentFees,
+      purchaseLegalFees,
+      surveyFees,
+      rentalIncome,
+      stampDutyPaid,
       adminDistrict,
       fiveYearGrowth,
       salePrice,
