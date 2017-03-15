@@ -11,19 +11,41 @@ import 'antd/lib/icon/style/css';
 import Popover from 'antd/lib/popover';
 import 'antd/lib/popover/style/css';
 
+import Modal from 'antd/lib/modal';
+import 'antd/lib/modal/style/css';
+
 import { updateGovernmentLoan } from '../../../actions/mortgageInputs';
 
 class GovernmentLoan extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      modalOpen: false,
+    };
+
     this.onChange = this.onChange.bind(this);
   }
 
   onChange(value) {
-    const { onUpdateGovernmentLoan } = this.props;
+    const { onUpdateGovernmentLoan, price } = this.props;
 
-    onUpdateGovernmentLoan(value);
+    if (value > 0 && price >= 600000) {
+      if (!this.state.modalOpen) {
+        this.setState({ modalOpen: true });
+        Modal.error({
+          title: 'Help to Buy Equity Loan',
+          content: 'Help to buy Equity loans are only granted on properties purchased for lower than £600k.',
+          okText: 'OK',
+          maskClosable: true,
+          onOk: () => {
+            this.setState({ modalOpen: false });
+          }
+        });
+      }
+    } else {
+      onUpdateGovernmentLoan(value);
+    }
   }
 
   get popoverContent() {
@@ -79,11 +101,14 @@ class GovernmentLoan extends Component {
 
 GovernmentLoan.propTypes = {
   governmentLoan: PropTypes.number,
+  region: PropTypes.string,
+  price: PropTypes.number,
 };
 
 const mapStateToProps = (state) => ({
   governmentLoan: state.mortgageInputs.governmentLoan,
   region: state.propertySearch.region,
+  price: state.purchaseInputs.price,
 });
 
 const mapDispatchToProps = (dispatch) => ({

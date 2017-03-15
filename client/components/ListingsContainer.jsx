@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import Icon from 'antd/lib/icon';
 import 'antd/lib/icon/style/css';
 
+import formatCurrency from '../utils/formatCurrency';
+
 import { updatePrice } from '../actions/purchaseInputs';
 
 class ListingsContainer extends Component {
@@ -16,6 +18,8 @@ class ListingsContainer extends Component {
   }
 
   onListingClick(event) {
+    event.preventDefault();
+
     const price = parseInt(event.currentTarget.getAttribute('data-price'));
     const { onUpdatePrice } = this.props;
 
@@ -44,6 +48,8 @@ class ListingsContainer extends Component {
   render() {
     const listings = this.props.listing.listing || [];
 
+    console.log(listings);
+
     return (
       <div className="ListingsContainer">
         <div className="ListingsContainer-section is-active">
@@ -52,8 +58,20 @@ class ListingsContainer extends Component {
             <Icon type="caret-down" className="u-floatRight"/>
           </header>
           <ul className="ListingsContainer-listings">{listings.map((listing, index) => (
-            <li onClick={this.onListingClick} data-price={listing.price} key={index}>
-              <img src={listing.image_url} alt="" />
+            <li key={index} >
+              <a href={listing.details_url} target="_blank">
+                <span className="price">{formatCurrency(parseInt(listing.price))}</span>
+                <p
+                  className="description"
+                  dangerouslySetInnerHTML={{ __html: listing.short_description }}
+                />
+                <span
+                  className="logo"
+                  onClick={this.onListingClick}
+                  data-price={listing.price}
+                />
+                <img src={listing.image_url} alt="" />
+              </a>
             </li>
           ))}</ul>
         </div>

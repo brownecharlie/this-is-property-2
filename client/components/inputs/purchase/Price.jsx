@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 import InputNumber from 'antd/lib/input-number';
 import 'antd/lib/input-number/style/css';
 
+import Modal from 'antd/lib/modal';
+import 'antd/lib/modal/style/css';
+
 import { updatePrice } from '../../../actions/purchaseInputs';
 
 class Price extends Component {
@@ -15,9 +18,18 @@ class Price extends Component {
   }
 
   onChange(value) {
-    const { onUpdatePrice } = this.props;
+    const { onUpdatePrice, governmentLoan } = this.props;
 
-    onUpdatePrice(value);
+    if (governmentLoan > 0 && value >= 600000) {
+      Modal.error({
+        title: 'Help to Buy Equity Loan',
+        content: 'Help to buy Equity loans are only granted on properties purchased for lower than £600k.',
+        okText: 'OK',
+        maskClosable: true,
+      });
+    } else {
+      onUpdatePrice(value);
+    }
   }
 
   render() {
@@ -34,10 +46,12 @@ class Price extends Component {
 
 Price.propTypes = {
   price: PropTypes.number,
+  governmentLoan: PropTypes.number,
 };
 
 const mapStateToProps = (state) => ({
   price: state.purchaseInputs.price,
+  governmentLoan: state.mortgageInputs.governmentLoan,
 });
 
 const mapDispatchToProps = (dispatch) => ({
