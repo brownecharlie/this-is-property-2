@@ -52,8 +52,12 @@ export function calculateProfit(salePrice, saleCosts, price, purchaseCosts, tota
   return salePrice - (saleCosts + price + purchaseCosts + totalMortgagePayment + brokerFee + governmentLoanInterest) + totalRentalIncome;
 }
 
-export function calculateProfitOnCost(profit, saleCosts, price, purchaseCosts, totalMortgagePayment, totalRentalIncome) {
-  return profit / (saleCosts + price + purchaseCosts + totalMortgagePayment - totalRentalIncome) * 100;
+export function calculateTotalCost(saleCosts, price, purchaseCosts, totalMortgagePayment, totalRentalIncome) {
+  return saleCosts + price + purchaseCosts + totalMortgagePayment - totalRentalIncome;
+}
+
+export function calculateProfitOnCost(profit, totalCosts) {
+  return profit / totalCosts * 100;
 }
 
 export function calculateReturnOnEquity(ownersProfit, allInBorrowerCosts) {

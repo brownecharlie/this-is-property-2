@@ -69,7 +69,8 @@ class RetursContanier extends Component {
     const totalRentalIncome = returns.calculateTotalRentalIncome(rentalIncome, holdPeriod);
     const governmentLoanInterest = returns.calculateGovernmentLoanInterest(governmentLoan, price, holdPeriod);
     const profit = returns.calculateProfit(salePrice, saleCosts, price, purchaseCosts, totalMortgagePayment, brokerFee, governmentLoanInterest, totalRentalIncome);
-    const profitOnCost = returns.calculateProfitOnCost(profit, saleCosts, price, purchaseCosts, totalMortgagePayment, totalRentalIncome);
+    const totalCosts = returns.calculateTotalCost(saleCosts, price, purchaseCosts, totalMortgagePayment, totalRentalIncome);    
+    const profitOnCost = returns.calculateProfitOnCost(profit, totalCosts);
     const governmentProfit = returns.calculateGovernmentProfit(price, salePrice, governmentLoan);
     const ownersProfit = returns.calculateOwnersProfit(profit, governmentProfit);
     const loanAmount = returns.calculateLoanAmount(price, deposit);
@@ -114,11 +115,13 @@ class RetursContanier extends Component {
       totalMortgagePayment,
       totalRentalIncome,
       profit,
+      totalCosts,
       profitOnCost,
       governmentProfit,
       ownersProfit,
       governmentLoanInterest,
       returnOnEquity,
+      allInBorrowerCosts,
     };
 
     const dopProps = {

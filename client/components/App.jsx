@@ -32,7 +32,7 @@ class App extends Component {
       propertyInputs,
     } = this.props;
 
-    console.log(this.props.appLoading);
+    console.log('---[ APP LOADING ]---');
 
     Meteor.call('getUserLocationFromIp', (err, userLocation) => {
       if (err) { console.log(err); return; }
@@ -46,6 +46,12 @@ class App extends Component {
         onUpdateAppLoading(false);
       });
     });
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.appLoading) {
+      console.log('---[ APP LOADED ]---');
+    }
   }
  
   render() {

@@ -26,13 +26,9 @@ export default async function getListings(params, cb) {
   const listing = zooplaData.data;
   const { latitude: lat, longitude: lon } = listing;
 
-  console.log('Store:', store);
-
-  // console.log('Zoopla Data:', listing);
-
-  // if (listing.disambiguation) {
-  //   console.log('Disambiguation:', listing.disambiguation);
-  // }
+  if (listing.disambiguation) {
+    console.log('Disambiguation:', listing.disambiguation);
+  }
 
   try {
     postcodeData = await Meteor.callPromise('getAdminDistrict', { lat, lon });
@@ -40,22 +36,14 @@ export default async function getListings(params, cb) {
     console.log('Error fetching postcode data:', error);
   }
 
-  // console.log('Postcode data:', postcodeData);
-
   const adminDistrict = postcodeData.data.result && postcodeData.data.result[0].admin_district || listing.county;
   const region = postcodeData.data.result && postcodeData.data.result[0].region || listing.county;
-
-  // console.log('Admin District:', adminDistrict);
-  // console.log('Region:', region);
 
   try {
     landregistryData = await Meteor.callPromise('getAveragePrices', adminDistrict.replace(/ /g, '-'));
   } catch(error) {
     console.log('Error fetching land registry data:', error);
   }
-
-  // console.log('Landregistry Data:', landregistryData.data.result.items);
-  // console.log('----------------------------------------------');
 
   const items = landregistryData.data.result.items;
   const fiveYearGrowth = (items[47].annualChange + items[35].annualChange + 

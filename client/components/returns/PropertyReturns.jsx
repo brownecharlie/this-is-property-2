@@ -31,11 +31,13 @@ function PropertyReturns({ calculations, headerClicked }) {
     totalMortgagePayment,
     totalRentalIncome,
     profit,
+    totalCosts,
     profitOnCost,
     governmentProfit,
     ownersProfit,
     governmentLoanInterest,
     returnOnEquity,
+    allInBorrowerCosts,
   } = calculations;
 
   const data = [
@@ -63,8 +65,20 @@ function PropertyReturns({ calculations, headerClicked }) {
     </div>
   );
 
+  const profitOnCostPopoverContent = (
+    <p>Total Profit ({formatCurrency(profit)}) / Total Costs ({formatCurrency(totalCosts)}).</p>
+  );
+
+  const returnOnEquityPopoverContent = (
+    <p>Owners' Profit ({formatCurrency(ownersProfit)}) / All In Borrower Costs ({formatCurrency(allInBorrowerCosts)}).</p>
+  );
+
   const rentalIncomePopoverContent = (
     <p>{formatCurrency(rentalIncome)} per month over {holdPeriod} years.</p>
+  );
+
+  const governmentLoanInterestPopoverContent = (
+    <p>The help to buy equity loan will charge 1.75% p.a. on the amount drawn after 5 years</p>
   );
 
   return (
@@ -76,11 +90,27 @@ function PropertyReturns({ calculations, headerClicked }) {
       <div className="ReturnsContainer-values">
         <ul>
           <li className="ReturnsContainer-profitOnCost">
-            <span>Profit on cost: </span>
+            <span>
+              Profit on cost:
+              <Popover
+                content={profitOnCostPopoverContent}
+                overlayClassName="Popover"
+              >
+                <Icon type="info-circle-o" />
+              </Popover>
+            </span>
             <span className="u-floatRight">{profitOnCost.toFixed(2)}%</span>
           </li>
           <li className="ReturnsContainer-returnOnEquity">
-            <span>Return on equity: </span>
+            <span>
+              Return on equity:
+              <Popover
+                content={returnOnEquityPopoverContent}
+                overlayClassName="Popover"
+              >
+                <Icon type="info-circle-o" />
+              </Popover>
+            </span>
             <span className="u-floatRight">{returnOnEquity.toFixed(2)}%</span>
           </li>
           <li className="ReturnsContainer-profit">
@@ -140,7 +170,15 @@ function PropertyReturns({ calculations, headerClicked }) {
             <span className="u-floatRight">{formatCurrency(totalMortgagePayment)}</span>
           </li>
           <li className="ReturnsContainer-governmentLoanInterest">
-            <span>Government loan interest: </span>
+            <span>
+              Government loan interest:
+              <Popover
+                content={governmentLoanInterestPopoverContent}
+                overlayClassName="Popover"
+              >
+                <Icon type="info-circle-o" />
+              </Popover>
+            </span>
             <span className="u-floatRight">{formatCurrency(governmentLoanInterest)}</span>
           </li>
           <li className="ReturnsContainer-rentalIncome">

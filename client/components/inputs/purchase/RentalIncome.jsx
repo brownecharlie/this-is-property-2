@@ -25,7 +25,7 @@ class RentalIncome extends Component {
 
     return (
       <div className="PurchaseSection-rentalIncome u-formInput">
-        <span>Rental income </span>
+        <span>Rental income (£ per month)</span>
         <InputNumber min={0} step={25} onChange={this.onChange} value={rentalIncome} />
       </div>
     );

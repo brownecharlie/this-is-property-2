@@ -60,6 +60,7 @@ class ListingsContainer extends Component {
           <ul className="ListingsContainer-listings">{listings.map((listing, index) => (
             <li key={index} >
               <a href={listing.details_url} target="_blank">
+                <img src={listing.image_url} alt="" />
                 <span className="price">{formatCurrency(parseInt(listing.price))}</span>
                 <p
                   className="description"
@@ -70,7 +71,6 @@ class ListingsContainer extends Component {
                   onClick={this.onListingClick}
                   data-price={listing.price}
                 />
-                <img src={listing.image_url} alt="" />
               </a>
             </li>
           ))}</ul>
