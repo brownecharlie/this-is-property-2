@@ -1,0 +1,50 @@
+.MortgageContainer {
+  @include gridle(12);
+
+  &.is-active {
+    header i {
+      transform: rotate(90deg);
+    }
+  }
+}
+
+.MortgageContainer-header {
+  padding: 15px;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+  border: 1px solid $color-black;
+  margin-bottom: 20px;
+
+  &:hover {
+    background-color: $color-green-accent;
+    border-color: $color-green-accent;
+
+    h3, i {
+      color: $color-white;
+    }
+  }
+
+  h3, i {
+    transition: all 0.25s ease-in-out;
+    color: $color-green-primary;
+  }
+
+  h3 {
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: normal;
+  }
+}
+
+.MortgageContainer-inputs {
+  overflow: hidden;
+
+  .u-formInput {
+    &:nth-of-type(odd) {
+      @include gridle(5.75 suffix 0.25);
+    }
+    &:nth-of-type(even) {
+      @include gridle(5.75 prefix 0.25);
+    }
+  }
+}

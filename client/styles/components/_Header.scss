@@ -18,6 +18,8 @@
 .AppHeader-nav {
   @include gridle(2);
 
+  margin-top: 5px;
+
   a {
     text-align: left;
     margin: 0 10px;
@@ -25,7 +27,7 @@
     transition: all 0.2s ease-out;
 
     &:hover {
-      color: paleturquoise;
+      color: $color-green-accent;
     }
   }
 }

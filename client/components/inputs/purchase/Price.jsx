@@ -8,6 +8,9 @@ import 'antd/lib/input-number/style/css';
 import Modal from 'antd/lib/modal';
 import 'antd/lib/modal/style/css';
 
+import Icon from 'antd/lib/icon';
+import 'antd/lib/icon/style/css';
+
 import { updatePrice } from '../../../actions/purchaseInputs';
 
 class Price extends Component {
@@ -37,7 +40,17 @@ class Price extends Component {
 
     return (
       <div className="PurchaseSection-price u-formInput">
-        <InputNumber size="large" min={0} onChange={this.onChange} value={price} />
+        <InputNumber
+          size="large"
+          min={0}
+          onChange={this.onChange}
+          value={price}
+          formatter={value => {
+            console.log(value);
+            return `$ ${value.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
+          }}
+          parser={value => value.replace(/\$\s?|(,*)/g, '')}
+        />
       </div>
     );
   }

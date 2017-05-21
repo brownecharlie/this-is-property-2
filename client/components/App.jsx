@@ -61,7 +61,6 @@ class App extends Component {
       <div className={`AppContainer ${navActive ? 'navActive' : ''}`}>
         <Header />
         {this.props.children}
-        <footer className="AppFooter">This is the footer</footer>
       </div>
     );
   }

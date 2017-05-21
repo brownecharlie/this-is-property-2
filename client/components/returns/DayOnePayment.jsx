@@ -36,7 +36,7 @@ function DayOnePayment ({ calculations, headerClicked }) {
     <section className="ReturnsContainer-section">
       <header className="ReturnsContainer-header" onClick={headerClicked}>
         <h3>Day One Payment</h3>
-        <Icon type="caret-down" className="u-floatRight"/>
+        <Icon type="caret-right" className="u-floatRight"/>
       </header>
       <div className="ReturnsContainer-values">
         <ul>

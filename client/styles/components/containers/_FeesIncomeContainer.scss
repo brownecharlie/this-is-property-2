@@ -2,10 +2,12 @@
   @include gridle(12);
 
   border-top: 1px solid $color-black;
+  margin-bottom: 30px;
 }
 
 .FeesIncomeContainer-title {
   margin: 10px 0 20px;
+  font-weight: normal;
 }
 
 .FeesIncomeContainer-fees {

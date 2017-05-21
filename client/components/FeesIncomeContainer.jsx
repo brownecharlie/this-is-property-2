@@ -13,7 +13,7 @@ export default class FeesIncomeContainer extends Component {
     return (
       <div className="FeesIncomeContainer">
         <div className="FeesIncomeContainer-fees">
-          <h3 className="FeesIncomeContainer-title">Purchase fees</h3>
+          <h3 className="FeesIncomeContainer-title">PURCHASE FEES</h3>
           <div className="FeesIncomeContainer-inputs">
             <SurveyFees />
             <PurchaseLegalFees />
@@ -23,7 +23,7 @@ export default class FeesIncomeContainer extends Component {
           </div>
         </div>
         <div className="FeesIncomeContainer-income">
-          <h3 className="FeesIncomeContainer-title">Purchase income</h3>
+          <h3 className="FeesIncomeContainer-title">PURCHASE INCOME</h3>
           <div className="FeesIncomeContainer-inputs">
             <RentalIncome />
           </div>

@@ -13,9 +13,11 @@
 .u-formInput {
   @include gridle(12);
 
+  margin-bottom: 10px;
+
   > span {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
   }
 
   .anticon {

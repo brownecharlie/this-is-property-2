@@ -41,8 +41,8 @@ function PropertyReturns({ calculations, headerClicked }) {
   } = calculations;
 
   const data = [
-    { name: 'Assumed Growth', value: growth, color: '#0088FE' },
-    { name: 'Projected Growth', value: fiveYearGrowth, color: '#00C49F' },
+    { name: 'Assumed Growth', value: growth, color: 'rgb(141, 201, 195)' },
+    { name: 'Projected Growth', value: fiveYearGrowth, color: 'rgb(70, 147, 140)' },
   ];
 
   const salePricePopoverContent = (
@@ -85,7 +85,7 @@ function PropertyReturns({ calculations, headerClicked }) {
     <section className="ReturnsContainer-section is-active">
       <header className="ReturnsContainer-header" onClick={headerClicked}>
         <h3>Property Returns</h3>
-        <Icon type="caret-down" className="u-floatRight"/>
+        <Icon type="caret-right" className="u-floatRight"/>
       </header>
       <div className="ReturnsContainer-values">
         <ul>
