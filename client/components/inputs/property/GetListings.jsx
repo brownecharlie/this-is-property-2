@@ -40,9 +40,13 @@ class GetListings extends Component {
 
   render() {
     return (
-      <div className="PropertySection-getListings u-formInput">
-        <Button onClick={this.onClickGetListings} type="ghost">Get listings</Button>
-      </div>
+      <Button
+        onClick={this.onClickGetListings}
+        type="ghost"
+        size="small"
+      >
+        Get listings
+      </Button>
     );
   }
 }

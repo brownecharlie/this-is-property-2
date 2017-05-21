@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import Input from 'antd/lib/input';
 import 'antd/lib/input/style/css';
 
+import GetListings from './GetListings';
+
 import { updateLocation } from '../../../actions/propertyInputs';
 
 class Location extends Component {
@@ -26,6 +28,7 @@ class Location extends Component {
     return (
       <div className="PropertySection-location u-formInput">
         <Input size="large" onChange={this.onChange} value={location} />
+        <GetListings />
       </div>
     );
   }

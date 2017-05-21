@@ -2,6 +2,12 @@
   @include gridle(12);
 
   margin-bottom: 15px;
+
+  button {
+    position: absolute;
+    right: 2px;
+    top: 2px;
+  }
 }
 
 .PropertySection-getListings {
