@@ -37,21 +37,14 @@ class Header extends Component {
     const { users, navActive } = this.props;
 
     return (
-      <header className={`AppHeader ${navActive ? 'active' : ''}`}>
-        <nav className="AppHeader-nav">
-          <div className="navHamburger" onClick={this.hamburgerClicked}>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <div className="navLinks">
-            <Link to="/">Home </Link>
-            <Link to="/about">About </Link>
-            {this.loginLink}
-            {this.adminLink}
-          </div>
-        </nav>
+      <header className="AppHeader">
         <h1 className="AppHeader-logo">THIS IS PROPERTY</h1>
+        <nav className="AppHeader-nav">
+          <Link to="/">Home </Link>
+          <Link to="/about">About </Link>
+          {this.loginLink}
+          {this.adminLink}
+        </nav>
       </header>
     );
   }

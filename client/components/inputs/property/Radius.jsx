@@ -35,7 +35,6 @@ class Radius extends Component {
 
     return (
       <div className="PropertySection-radius u-formInput">
-        <span>Distance from location </span>
         <Select onChange={this.onChange} value={`${radius}`}>
           {this.selectOptions}
         </Select>

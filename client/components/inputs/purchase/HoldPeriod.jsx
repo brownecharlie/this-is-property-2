@@ -25,7 +25,6 @@ class HoldPeriod extends Component {
 
     return (
       <div className="PurchaseSection-holdPeriod u-formInput">
-        <span>Hold period </span>
         <InputNumber min={0} onChange={this.onChange} value={holdPeriod} />
       </div>
     );

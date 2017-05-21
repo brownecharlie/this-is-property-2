@@ -26,7 +26,6 @@ class StampDuty extends Component {
 
     return (
       <div className="PurchaseSection-stampDuty u-formInput">
-        <span>Stamp duty </span>
         <span>{stampDuty}%</span>
       </div>
     );

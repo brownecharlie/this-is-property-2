@@ -1,7 +1,7 @@
 .PropertySection-location {
-  input {
-    display: inline-block;
-  }
+  @include gridle(12);
+
+  margin-bottom: 15px;
 }
 
 .PropertySection-getListings {

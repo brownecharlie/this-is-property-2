@@ -37,8 +37,7 @@ class Price extends Component {
 
     return (
       <div className="PurchaseSection-price u-formInput">
-        <span>Price </span>
-        <InputNumber min={0} onChange={this.onChange} value={price} />
+        <InputNumber size="large" min={0} onChange={this.onChange} value={price} />
       </div>
     );
   }

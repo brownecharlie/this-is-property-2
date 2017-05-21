@@ -1,40 +1,11 @@
 .ListingsContainer {
   @include gridle(12);
+
+  border-top: 1px solid $color-black;
 }
 
-.ListingsContainer-section {
-  background-color: $color-white;
-  margin-bottom: 4px;
-  box-shadow: 0px 0px 5px 1px rgba($color-black, 0.1);
-
-  header i {
-    transition: transform 0.3s;
-  }
-
-  &.is-active {
-    header {
-      border-bottom: 1px dashed $color-grey-light;
-
-      i {
-        transform: rotate(180deg);
-      }
-    }
-  }
-}
-
-.ListingsContainer-header {
-  padding: 15px;
-  cursor: pointer;
-  transition: background-color 0.25s;
-
-  &:hover {
-    background-color: rgba($color-grey-light, 0.25);
-  }
-
-  h3 {
-    display: inline-block;
-    text-transform: uppercase;
-  }
+.ListingsContainer-title {
+  margin: 10px 0 20px;
 }
 
 .ListingsContainer-listings {
@@ -50,17 +21,7 @@
     cursor: pointer;
     overflow: hidden;
     padding: 0;
-    border-top: 15px solid $color-white;
-
-    &:nth-child(odd) {
-      border-left: 15px solid $color-white;
-      border-right: 7px solid $color-white;
-    }
-
-    &:nth-child(even) {
-      border-right: 15px solid $color-white;
-      border-left: 7px solid $color-white;
-    }
+    margin-bottom: 30px;
 
     &:hover {
       .description {
@@ -70,10 +31,12 @@
 
     .price {
       position: absolute;
-      top: 0;
+      top: 30px;
       left: 0;
+      width: 150px;
+      text-align: right;
       padding: 5px 20px;
-      background-color: rgba($color-black, 0.5);
+      background-color: rgba($color-green-primary, 0.7);
       font-size: 18px;
       color: $color-white;
     }
@@ -103,17 +66,15 @@
 
     .logo {
       position: absolute;
-      top: 10px;
-      right: 10px;
-      width: 20px;
-      height: 20px;
-      background-color: red;
-      border-radius: 20px;
-      transition: transform 0.2s ease-in-out, background-color 0.25s ease-in-out;
+      top: 30px;
+      right: 20px;
+      font-size: 30px;
+      color: $color-green-primary;
+      transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
 
       &:hover {
-        background-color: blue;
-        transform: scale(1.3);
+        color: $color-red-primary;
+        transform: scale(1.2);
       }
     }
 

@@ -2,7 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
  
 import SearchContainer from '../SearchContainer';
-import PurchaseMortgageContainer from '../PurchaseMortgageContainer';
+import PurchaseContainer from '../PurchaseContainer';
+import FeesIncomeContainer from '../FeesIncomeContainer';
+import MortgageContainer from '../MortgageContainer';
 import ReturnsContainer from '../ReturnsContainer';
 import ListingsContainer from '../ListingsContainer';
 
@@ -14,7 +16,9 @@ export default function Home() {
         <ListingsContainer />
       </div>
       <div className="MortgageAndReturns">
-        <PurchaseMortgageContainer />
+        <PurchaseContainer />
+        <FeesIncomeContainer />
+        <MortgageContainer />
         <ReturnsContainer />
       </div>
     </div>

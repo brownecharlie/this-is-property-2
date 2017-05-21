@@ -14,7 +14,6 @@ class ListingsContainer extends Component {
     super(props);
 
     this.onListingClick = this.onListingClick.bind(this);
-    this.headerClicked = this.headerClicked.bind(this);
   }
 
   onListingClick(event) {
@@ -26,55 +25,30 @@ class ListingsContainer extends Component {
     onUpdatePrice(price);
   }
 
-  headerClicked(event) {
-    const target = event.currentTarget.parentElement.querySelector('.ListingsContainer-listings');
-
-    event.currentTarget.parentElement.classList.toggle('is-active');
-
-    if (!event.currentTarget.parentElement.classList.contains('is-active')) {
-      TweenMax.to(target, 0.5, {
-        height: 0,
-        ease: Power3.easeOut,
-      });      
-    } else {
-      TweenMax.set(target, { height: 'auto' });
-      TweenMax.from(target, 0.5, {
-        height: 0,
-        ease: Power3.easeOut,
-      });
-    }
-  }
-
   render() {
     const listings = this.props.listing.listing || [];
 
-    console.log(listings);
-
     return (
       <div className="ListingsContainer">
-        <div className="ListingsContainer-section is-active">
-          <header className="ListingsContainer-header" onClick={this.headerClicked}>
-            <h3>Property Listings</h3>
-            <Icon type="caret-down" className="u-floatRight"/>
-          </header>
-          <ul className="ListingsContainer-listings">{listings.map((listing, index) => (
-            <li key={index} >
-              <a href={listing.details_url} target="_blank">
-                <img src={listing.image_url} alt="" />
-                <span className="price">{formatCurrency(parseInt(listing.price))}</span>
-                <p
-                  className="description"
-                  dangerouslySetInnerHTML={{ __html: listing.short_description }}
-                />
-                <span
-                  className="logo"
-                  onClick={this.onListingClick}
-                  data-price={listing.price}
-                />
-              </a>
-            </li>
-          ))}</ul>
-        </div>
+        <h3 className="ListingsContainer-title">PROPERTY LISTINGS</h3>
+        <ul className="ListingsContainer-listings">{listings.map((listing, index) => (
+          <li key={index} >
+            <a href={listing.details_url} target="_blank">
+              <img src={listing.image_url} alt="" />
+              <span className="price">{formatCurrency(parseInt(listing.price))}</span>
+              <p
+                className="description"
+                dangerouslySetInnerHTML={{ __html: listing.short_description }}
+              />
+              <Icon
+                type="pie-chart"
+                className="logo"
+                onClick={this.onListingClick}
+                data-price={listing.price}
+              />
+            </a>
+          </li>
+        ))}</ul>
       </div>
     );
   }

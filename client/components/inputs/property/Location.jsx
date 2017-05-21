@@ -25,8 +25,7 @@ class Location extends Component {
 
     return (
       <div className="PropertySection-location u-formInput">
-        <span>Location </span>
-        <Input onChange={this.onChange} value={location} />
+        <Input size="large" onChange={this.onChange} value={location} />
       </div>
     );
   }

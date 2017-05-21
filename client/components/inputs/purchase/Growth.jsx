@@ -25,7 +25,6 @@ class Growth extends Component {
 
     return (
       <div className="PurchaseSection-growth u-formInput">
-        <span>Growth (% p.a.)</span>
         <InputNumber min={0} onChange={this.onChange} value={growth} />
       </div>
     );

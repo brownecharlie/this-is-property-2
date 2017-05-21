@@ -2,17 +2,17 @@
   @include gridle(container);
 
   .SearchAndListings {
-    @include gridle(12 sm 5 prefix 1);
+    @include gridle(12 sm 4.5 prefix 0.5);
 
-    padding: 0;
+    padding: 0 20px 0 0;
   }
 
   .MortgageAndReturns {
-    @include gridle(12 sm 5 suffix 1);
+    @include gridle(12 sm 4.5 suffix 0.5);
     @include gridle_state(sm) {
       // position: fixed;
     }
 
-    padding: 0;
+    padding: 0 0 0 20px;
   }
 }

@@ -1,0 +1,17 @@
+.FeesIncomeContainer {
+  @include gridle(12);
+
+  border-top: 1px solid $color-black;
+}
+
+.FeesIncomeContainer-title {
+  margin: 10px 0 20px;
+}
+
+.FeesIncomeContainer-fees {
+  @include gridle(5.75 suffix 0.25);
+}
+
+.FeesIncomeContainer-income {
+  @include gridle(5.75 prefix 0.25);
+}

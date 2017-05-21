@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { connect } from 'react-redux';
 
@@ -21,24 +21,9 @@ class BuyToLet extends Component {
   }
 
   render() {
-    const { buyToLet } = this.props;
-
-    return (
-      <div className="PurchaseSection-buyToLet u-formInput">
-        <span>Buy to let </span>
-        <Switch onChange={this.onChange} />
-      </div>
-    );
+    return <Switch onChange={this.onChange} />;
   }
 }
-
-BuyToLet.propTypes = {
-  buyToLet: PropTypes.bool,
-};
-
-const mapStateToProps = (state) => ({
-  buyToLet: state.purchaseInputs.buyToLet,
-});
 
 const mapDispatchToProps = (dispatch) => ({
   onUpdateBuyToLet(buyToLet) {
@@ -47,6 +32,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(BuyToLet);

@@ -18,59 +18,78 @@ export default class PropertyForm extends Component {
   constructor() {
     super();
 
-    this.headerClicked = this.headerClicked.bind(this);
+    this.state = {
+      activeInput: null,
+    };
+
+    this.inputHeaderClicked = this.inputHeaderClicked.bind(this);
   }
 
-  componentDidMount() {
-    const inputSections = document.querySelectorAll('.SearchContainer-inputs');
+  inputHeaderClicked(event) {
+    const type = event.currentTarget.getAttribute('data-type');
 
-    for (const section of inputSections) {
-      if (Array.from(inputSections).indexOf(section) !== 0) {
-        TweenMax.set(section, { height: 0 });
-      }
-    }
-  }
-
-  headerClicked(event) {
-    const target = event.currentTarget.parentElement.querySelector('.SearchContainer-inputs');
-
-    event.currentTarget.parentElement.classList.toggle('is-active');
-
-    if (!event.currentTarget.parentElement.classList.contains('is-active')) {
-      TweenMax.to(target, 0.5, {
-        height: 0,
-        ease: Power3.easeOut,
-      });      
-    } else {
-      TweenMax.set(target, { height: 'auto' });
-      TweenMax.from(target, 0.5, {
-        height: 0,
-        ease: Power3.easeOut,
-      });
-    }
+    this.setState({ activeInput: type });
   }
 
   render() {
+    const { activeInput } = this.state;
+
     return (
-      <article className="SearchContainer">
-        <section className="SearchContainer-section is-active">
-          <header className="SearchContainer-header" onClick={this.headerClicked}>
-            <h3>Property Search</h3>
-            <Icon type="caret-down" className="u-floatRight"/>
-          </header>
-          <div className="SearchContainer-inputs" ref="inputs">
-            <div className="SearchContainer-inputWrapper">
-              <PriceRange />
-              <Location />
-              <Beds />
-              <Radius />
-              <Type />
-              <OrderBy />
-              <GetListings />
-            </div>
-          </div>
-        </section>
-      </article>
+      <div className="SearchContainer">
+
+        <div className="SearchContainer-location"><Location /></div>
+
+        <nav className="SearchContainer-nav">
+          <ul>
+            <li 
+              className={`${activeInput === 'priceRange' ? 'active' : ''}`}
+              data-type="priceRange"
+              onClick={this.inputHeaderClicked}>
+                <span>Price</span>
+                <Icon type="right" />
+            </li>
+            <li 
+              className={`${activeInput === 'beds' ? 'active' : ''}`}
+              data-type="beds"
+              onClick={this.inputHeaderClicked}>
+                <span>Beds</span>
+                <Icon type="right" />
+            </li>
+            <li 
+              className={`${activeInput === 'type' ? 'active' : ''}`}
+              data-type="type"
+              onClick={this.inputHeaderClicked}>
+                <span>Property type</span>
+                <Icon type="right" />
+            </li>
+            <li 
+              className={`${activeInput === 'radius' ? 'active' : ''}`}
+              data-type="radius"
+              onClick={this.inputHeaderClicked}>
+                <span>Radius</span>
+                <Icon type="right" />
+            </li>
+            <li 
+              className={`${activeInput === 'orderBy' ? 'active' : ''}`}
+              data-type="orderBy"
+              onClick={this.inputHeaderClicked}>
+                <span>Sort by</span>
+                <Icon type="right" />
+            </li>
+          </ul>
+        </nav>
+
+        <div className="SearchContainer-inputs">
+          <div className={`SearchContainer-priceRange ${activeInput === 'priceRange' ? 'active' : ''}`}><PriceRange /></div>
+          <div className={`SearchContainer-beds ${activeInput === 'beds' ? 'active' : ''}`}><Beds /></div>
+          <div className={`SearchContainer-type ${activeInput === 'type' ? 'active' : ''}`}><Type /></div>
+          <div className={`SearchContainer-radius ${activeInput === 'radius' ? 'active' : ''}`}><Radius /></div>
+          <div className={`SearchContainer-orderBy ${activeInput === 'orderBy' ? 'active' : ''}`}><OrderBy /></div>
+        </div>
+
+        <img className="SearchContainer-zooplaLogo" src="images/zoopla_logo.jpg"/>
+
+      </div>
     );
   }
 }

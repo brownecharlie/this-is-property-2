@@ -31,7 +31,6 @@ class Type extends Component {
 
     return (
       <div className="PropertySection-type u-formInput">
-        <span>Property type </span>
         <Select onChange={this.onChange} value={type}>
           {this.selectOptions}
         </Select>

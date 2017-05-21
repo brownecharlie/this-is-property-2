@@ -11,21 +11,11 @@
 .u-xs-textSize { font-size: $font-size-xs; }
 
 .u-formInput {
-  @include gridle(12 lg 6);
-
-  margin: 5px 0;
-  min-height: 60px;
+  @include gridle(12);
 
   > span {
     display: block;
     margin-bottom: 5px;
-  }
-
-  &.PurchaseSection-buyToLet,
-  &.PurchaseSection-stampDuty {
-    @include gridle(6 lg 3);
-
-    min-height: 60px;
   }
 
   .anticon {

@@ -31,7 +31,6 @@ class OrderBy extends Component {
 
     return (
       <div className="PropertySection-orderBy u-formInput">
-        <span>Order by </span>
         <Select onChange={this.onChange} value={orderBy}>
           {this.selectOptions}
         </Select>

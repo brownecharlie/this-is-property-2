@@ -33,7 +33,6 @@ class Price extends Component {
 
     return (
       <div className="PropertySection-price u-formInput">
-        <span>Price </span>
         <Slider
           range
           min={PRICE_VALUES[0]}
