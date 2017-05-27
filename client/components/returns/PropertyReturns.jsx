@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
+import { findDOMNode } from 'react-dom';
 
 import Icon from 'antd/lib/icon';
 import 'antd/lib/icon/style/css';
@@ -202,7 +203,7 @@ function PropertyReturns({ calculations, headerClicked }) {
             <span className="u-floatRight">{`${growth}%`}</span>
           </li>
           <li className="ReturnsContainer-fiveYearGrowth ReturnsContainer-graph">
-            <span>5 year average growth in {adminDistrict}</span>
+            {/** <span>5 year average growth in {adminDistrict}</span> **/}
             <ResponsiveContainer height={230}>
               <BarChart width={300} height={230} data={data}>
                 <XAxis dataKey="name" />

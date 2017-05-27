@@ -22,9 +22,14 @@
 
   a {
     text-align: left;
-    margin: 0 10px;
+    margin-right: 10px;
     color: $color-green-primary;
+    text-transform: uppercase;
     transition: all 0.2s ease-out;
+
+    &:last-child {
+      margin-right: 0;
+    }
 
     &:hover {
       color: $color-green-accent;

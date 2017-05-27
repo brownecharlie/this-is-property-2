@@ -6,8 +6,14 @@
 
   button {
     position: absolute;
-    right: 2px;
-    top: 2px;
+    right: 5px;
+    top: 5px;
+    background-color: $color-green-primary;
+    color: white;
+
+    span {
+      font-size: 12px;
+    }
   }
 }
 

@@ -15,12 +15,17 @@
 
   li {
     cursor: pointer;
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+      color: $color-green-secondary;
+    }
 
     i {
       font-size: 10px;
       margin-left: 5px;
       transform: rotate(0);
-      transition: 0.2s ease-in-out;
+      transition: transform 0.2s ease-in-out;
     }
 
     &.active {
