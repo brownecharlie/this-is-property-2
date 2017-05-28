@@ -26,7 +26,14 @@ class SaleLegalFees extends Component {
     return (
       <div className="PurchaseSection-saleLegalFees u-formInput">
         <span>Sale legal fees </span>
-        <InputNumber min={0} step={25} onChange={this.onChange} value={saleLegalFees} />
+        <InputNumber
+          min={0}
+          step={25}
+          onChange={this.onChange}
+          value={saleLegalFees}
+          formatter={value => `£ ${value}`}
+          parser={value => value.replace('£', '')}
+        />
       </div>
     );
   }

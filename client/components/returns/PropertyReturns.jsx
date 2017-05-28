@@ -90,6 +90,10 @@ function PropertyReturns({ calculations, headerClicked }) {
       </header>
       <div className="ReturnsContainer-values">
         <ul>
+          <li className="ReturnsContainer-profit">
+            <span>Profit: </span>
+            <span className="u-floatRight">{formatCurrency(profit)}</span>
+          </li>
           <li className="ReturnsContainer-profitOnCost">
             <span>
               Profit on cost:
@@ -113,10 +117,6 @@ function PropertyReturns({ calculations, headerClicked }) {
               </Popover>
             </span>
             <span className="u-floatRight">{returnOnEquity.toFixed(2)}%</span>
-          </li>
-          <li className="ReturnsContainer-profit">
-            <span>Profit: </span>
-            <span className="u-floatRight">{formatCurrency(profit)}</span>
           </li>
           <li className="ReturnsContainer-ownersProfit">
             <span>Owners profit: </span>
@@ -202,22 +202,32 @@ function PropertyReturns({ calculations, headerClicked }) {
             <span>Growth (% p.a.): </span>
             <span className="u-floatRight">{`${growth}%`}</span>
           </li>
-          <li className="ReturnsContainer-fiveYearGrowth ReturnsContainer-graph">
-            {/** <span>5 year average growth in {adminDistrict}</span> **/}
-            <ResponsiveContainer height={230}>
-              <BarChart width={300} height={230} data={data}>
-                <XAxis dataKey="name" />
-                <YAxis />
-                <CartesianGrid strokeDasharray="5 5" />
-                <Bar dataKey="value" isAnimationActive={false}>
-                {
-                  data.map((entry, index) => <Cell key={index} fill={entry.color}/>)
-                }
-                </Bar>
-              </BarChart>
-            </ResponsiveContainer>
-          </li>
         </ul>
+        <div className="ReturnsContainer-graph">
+          {/** <span>5 year average growth in {adminDistrict}</span> **/}
+          <ResponsiveContainer height={410}>
+            <BarChart data={data}>
+              <XAxis
+                dataKey="name"
+                tickLine={false}
+                axisLine={false}
+                interval={0}
+              />
+              <YAxis
+                axisLine={false}
+                tickLine={false}
+                tickFormatter={value => `${value}%`}
+              />
+              <Bar
+                dataKey="value"
+                
+                isAnimationActive={false}
+              >{data.map((entry, index) => (
+                <Cell key={index} fill={entry.color}/>
+              ))}</Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
       </div>
     </section>
   );

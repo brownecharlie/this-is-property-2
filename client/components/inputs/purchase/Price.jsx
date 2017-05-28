@@ -45,11 +45,8 @@ class Price extends Component {
           min={0}
           onChange={this.onChange}
           value={price}
-          formatter={value => {
-            console.log(value);
-            return `$ ${value.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
-          }}
-          parser={value => value.replace(/\$\s?|(,*)/g, '')}
+          formatter={value => `£ ${value}`}
+          parser={value => value.replace('£', '')}
         />
       </div>
     );

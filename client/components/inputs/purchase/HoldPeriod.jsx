@@ -25,7 +25,13 @@ class HoldPeriod extends Component {
 
     return (
       <div className="PurchaseSection-holdPeriod u-formInput">
-        <InputNumber min={0} onChange={this.onChange} value={holdPeriod} />
+        <InputNumber
+          min={0}
+          onChange={this.onChange}
+          value={holdPeriod}
+          formatter={value => `years: ${value}`}
+          parser={value => value.replace('years:', '')}
+        />
       </div>
     );
   }

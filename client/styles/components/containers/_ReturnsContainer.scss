@@ -46,40 +46,22 @@
   overflow: hidden;
 
   ul {
-    @include gridle(container);
+    @include gridle(6);
 
     li {
-      @include gridle(12 lg 6);
-      @include gridle_state(lg) {
-        padding-top: 6px;
-        padding-bottom: 4px;
-      }
+      @include gridle(12);
+
+      padding: 3px 8px;
+      display: block;
+      float: none;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
 
       span {
         font-size: 14px;
       }
 
-      &.ReturnsContainer-profit {
-        span {
-          &.u-floatRight {
-            color: green;
-          }
-        }
-      }
-
-      border-bottom: 1px solid rgba(0,0,0,0.05);
-      padding-top: 2px;
-      padding-bottom: 1px;
-
-      &:nth-child(odd) {
-        border-right: 1px solid rgba(0,0,0,0.05);
-      }
-
       &:last-child {
-        @include gridle(12);
-
-        border: none;
-        margin: 20px 0;
+        border-bottom: none;
       }
     }
   }
@@ -88,4 +70,31 @@
     margin-left: 5px;
     cursor: pointer;
   }
+}
+
+.ReturnsContainer-profit {
+  background-color: $color-green-primary;
+  color: $color-white;
+}
+
+.ReturnsContainer-salePrice {
+  margin-top: 20px;
+  background-color: rgba($color-black, 0.3);
+}
+
+.ReturnsContainer-governmentProfit {
+  border-bottom: none !important;
+}
+
+.ReturnsContainer-price {
+  margin-top: 20px;
+  background-color: rgba($color-black, 0.3);
+}
+
+.ReturnsContainer-holdPeriod {
+  margin-top: 20px;
+}
+
+.ReturnsContainer-graph {
+  @include gridle(6);
 }

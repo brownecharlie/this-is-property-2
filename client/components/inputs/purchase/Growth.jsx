@@ -25,7 +25,13 @@ class Growth extends Component {
 
     return (
       <div className="PurchaseSection-growth u-formInput">
-        <InputNumber min={0} onChange={this.onChange} value={growth} />
+        <InputNumber
+          min={0}
+          onChange={this.onChange}
+          value={growth}
+          formatter={value => `${value}%`}
+          parser={value => value.replace('%', '')}
+        />
       </div>
     );
   }
